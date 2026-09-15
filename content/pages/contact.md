@@ -21,7 +21,7 @@ We’re happy to answer any questions you have or provide you with an estimate. 
 
 - Working Hours:
 9AM - 12:00PM
-3PM - 6:00pm
+3PM - 5:30PM
 - Friday/Saturday/Sunday: Closed
 
 ## Have Any Questions?

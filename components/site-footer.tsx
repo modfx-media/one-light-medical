@@ -72,30 +72,8 @@ export function SiteFooter() {
           </ul>
         </section>
 
-        <div className="footer-signup">
-          {/* A mailto action with method="get" hands the address to the
-              visitor's own mail client, so this works with no JavaScript and no
-              list provider wired up. Swap the action for a route handler once
-              one exists; the field names are all that would change. */}
-          <form className="signup" action={`mailto:${BUSINESS.email}`} method="get">
-            <h2>Stay in the loop</h2>
-            <p className="signup-field">
-              <input type="hidden" name="subject" value="Newsletter signup" />
-              <input
-                type="email"
-                name="body"
-                required
-                autoComplete="email"
-                aria-label="Your email address"
-                placeholder="Enter your email address"
-              />
-              <button type="submit">Subscribe</button>
-            </p>
-            <p className="signup-note">
-              By signing up, I agree with the data protection policy of One Light Medical.
-            </p>
-          </form>
-
+        <section className="footer-follow">
+          <h2>Follow Us</h2>
           <p className="footer-social">
             {FOOTER_SOCIAL.map((item) => (
               <a key={item.label} href={item.href} rel="noopener noreferrer" target="_blank">
@@ -103,7 +81,7 @@ export function SiteFooter() {
               </a>
             ))}
           </p>
-        </div>
+        </section>
       </div>
 
       <div className="footer-wrap footer-end">

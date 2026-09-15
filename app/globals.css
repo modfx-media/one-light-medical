@@ -38,7 +38,6 @@
   --navy-panel: #132252;
   --ice: #e3faff;
   --sky: #b9f2ff;
-  --signup: #a9edfb;
   --teal: #73e3de;
   --near-black: #010101;
   --rule: #2b4cb8;
@@ -1820,12 +1819,17 @@ main > article a {
   margin-inline: auto;
 }
 
-/* Proportional rather than equal: the newsletter card takes a third of the row
-   and Quick Links the narrowest share, as in the design. */
+/* Proportional columns keep the longer service and contact lists comfortable. */
 .footer-grid {
   display: grid;
-  grid-template-columns: 196fr 355fr 284fr 419fr;
+  grid-template-columns: minmax(8rem, 0.75fr) minmax(20rem, 1.65fr) minmax(15rem, 1.2fr) minmax(8rem, 0.65fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
   padding-top: 5.14rem;
+}
+
+.footer-grid > * {
+  min-width: 0;
 }
 
 .site-footer h2 {
@@ -1901,81 +1905,22 @@ main > article a {
   color: #ffffff;
 }
 
-/* No heading of its own, so the card hangs level with the contact icons. */
-.footer-signup {
-  padding-top: 2.69rem;
-}
-
-.signup {
-  padding: 1.35rem 1.35rem 1.45rem 1.45rem;
-  border-radius: 0.5625rem;
-  background: #a9edfa;
-}
-
-.signup h2 {
-  margin-bottom: 1.39rem;
-  font-size: var(--t-small);
-}
-
-.signup-field {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  margin: 0;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid #7fb8c8;
-  line-height: 1.5;
-}
-
-.signup-field input {
-  flex: 1;
-  min-width: 0;
-  border: 0;
-  background: none;
-  color: #04161b;
-  font: inherit;
-}
-
-.signup-field input::placeholder {
-  color: #75b4c2;
-}
-
-.signup-field input:focus-visible {
-  outline: none;
-}
-
-/* The rule under the field is the only affordance the design gives the input,
-   so focus has to show up there instead. */
-.signup-field:focus-within {
-  border-bottom-color: #1c4fa0;
-}
-
-.signup-field button {
-  border: 0;
-  background: none;
-  color: #04161b;
-  font: inherit;
-  cursor: pointer;
-}
-
-.signup-field button:hover {
-  color: #1c4fa0;
-}
-
-.signup-note {
-  margin: 0.7rem 0 0;
-  color: #10484f;
-  font-size: var(--t-note);
-  line-height: 1.333;
-}
-
 .footer-social {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin: 0.52rem 0 0;
+  margin: 0;
   font-size: var(--t-small);
   line-height: 1.375;
+}
+
+@media (max-width: 1100px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(2rem, 6vw, 4rem);
+    row-gap: 2.75rem;
+    padding-top: 3.25rem;
+  }
 }
 
 /* Flex rather than text-align: an inline-block logo would sit on a line box and
@@ -2030,15 +1975,6 @@ main > article a {
      banner ratio keeps the copy and the image in proportion. */
   .reason {
     aspect-ratio: 2.4 / 1;
-  }
-
-  /* Two by two: the four columns are too narrow to hold their labels on one
-     line much below this, and the newsletter card needs its full width. */
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 2.5rem;
-    row-gap: 2.75rem;
-    padding-top: 3.25rem;
   }
 
   .closer-art {
@@ -2310,9 +2246,6 @@ main > article a {
     font-size: 0.87rem;
   }
 
-  .signup-field {
-    flex-wrap: wrap;
-  }
 }
 
 /* ---------- Contact page --------------------------------------------------
@@ -4176,8 +4109,6 @@ main > article a {
 
 .paper-lead,
 .paper-section-head p,
-.paper-steps p,
-.paper-adobe,
 .paper-cta p {
   font-size: var(--t-body);
   line-height: 1.6;
@@ -4225,56 +4156,8 @@ main > article a {
   color: var(--ink-soft);
 }
 
-.paper-soon {
-  display: inline-block;
+.paper-form-action {
   margin: 1.75rem 0 0;
-  padding: 0.45rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(2, 38, 156, 0.08);
-  color: var(--brand);
-  font-size: var(--t-small);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-.paper-steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  margin: 2rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.paper-steps li {
-  padding-right: 1.5rem;
-}
-
-.paper-steps li + li {
-  padding-left: 1.5rem;
-  border-left: 1px solid rgba(2, 38, 156, 0.12);
-}
-
-.paper-steps span {
-  color: var(--brand);
-  font-size: var(--t-note);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-}
-
-.paper-steps p {
-  margin: 0.55rem 0 0;
-  color: var(--ink-soft);
-}
-
-.paper-adobe {
-  margin: 1.75rem 0 0;
-  max-width: 42rem;
-  color: var(--ink-soft);
-}
-
-.paper-adobe a {
-  color: var(--brand);
 }
 
 .paper-pay {
@@ -5784,7 +5667,6 @@ main > article a {
   .about-values,
   .about-cta-grid,
   .paper-hero-grid,
-  .paper-steps,
   .paper-pay-list,
   .paper-cta-grid,
   .hub-hero-grid,
@@ -5877,18 +5759,6 @@ main > article a {
   }
 
   .about-values li:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-
-  .paper-steps li,
-  .paper-steps li + li {
-    padding: 1.5rem 0 0;
-    border-left: 0;
-    border-top: 1px solid rgba(2, 38, 156, 0.12);
-  }
-
-  .paper-steps li:first-child {
     border-top: 0;
     padding-top: 0;
   }

@@ -4,26 +4,11 @@ import { JsonLd } from "@/components/json-ld";
 import { BUSINESS } from "@/lib/site";
 import { getPageSchema } from "@/lib/schema";
 
-const STEPS = [
-  {
-    title: "Open the PDF",
-    copy: "All forms are PDF files. You will need Adobe Reader to view them.",
-  },
-  {
-    title: "Print and fill them in",
-    copy: "Download the necessary forms, print them out, and fill in the required information at home or at the office.",
-  },
-  {
-    title: "Bring them with you",
-    copy: "Fax us your printed and completed forms or bring them with you to your appointment at the Amarillo clinic.",
-  },
-] as const;
-
 const PAYMENTS = [
-  { label: "Cash", detail: "Paid at the clinic" },
-  { label: "Cheque", detail: "Accepted in office" },
-  { label: "Care Credit", detail: "0% interest financing" },
+  { label: "Cash / Check", detail: "Accepted in office" },
   { label: "Cards", detail: "Visa, Mastercard, Discover" },
+  { label: "Cherry", detail: "Financing option — discuss in office" },
+  { label: "Affirm", detail: "Financing option — discuss in office" },
 ] as const;
 
 export function PaperworkPage() {
@@ -71,25 +56,10 @@ export function PaperworkPage() {
             </p>
           </header>
 
-          <p className="paper-soon">New Patient Paperwork is coming soon.</p>
-
-          <ol className="paper-steps">
-            {STEPS.map((step, index) => (
-              <li key={step.title}>
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{step.title}</h3>
-                <p>{step.copy}</p>
-              </li>
-            ))}
-          </ol>
-
-          <p className="paper-adobe">
-            If you do not already have Adobe Reader installed,{" "}
-            <a href="https://get.adobe.com/reader/" rel="noopener noreferrer" target="_blank">
-              download Adobe Reader
-            </a>
-            . Until the PDFs are posted here, call the clinic and we will tell you what to bring,
-            or arrive a few minutes early and complete the forms in the office.
+          <p className="paper-form-action">
+            <Link href="/contact/" className="btn btn-gradient">
+              <span aria-hidden="true">♦️</span> One Light Medical Intake Form
+            </Link>
           </p>
         </div>
       </section>

@@ -38,6 +38,20 @@ export const MEDICAL_ORGANIZATION = {
         postalCode: BUSINESS.postalCode,
         addressCountry: "US",
       },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          opens: "09:00",
+          closes: "12:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          opens: "15:00",
+          closes: "17:30",
+        },
+      ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Medical Services",

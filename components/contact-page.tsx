@@ -23,7 +23,7 @@ const FORM = {
 /* Working hours and the section headings come from content/pages/contact.md,
    harvested from the live page in Stage A. Keep them in step with that file. */
 const HOURS = [
-  { days: "Monday – Thursday", time: "9:00AM – 12:00PM, 3:00PM – 6:00PM" },
+  { days: "Monday – Thursday", time: "9:00AM – 12:00PM, 3:00PM – 5:30PM" },
   { days: "Friday – Sunday", time: "Closed" },
 ];
 

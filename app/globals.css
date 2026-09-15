@@ -4160,6 +4160,101 @@ main > article a {
   margin: 1.75rem 0 0;
 }
 
+.intake-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(48rem, calc(100vw - 3rem));
+  height: min(82dvh, 48rem);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(2, 38, 156, 0.12);
+  border-radius: 1.35rem;
+  background: #fff;
+  box-shadow: 0 2rem 6rem rgba(1, 18, 38, 0.4);
+  transform: translate(-50%, -50%);
+}
+
+.intake-modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.intake-modal::backdrop {
+  background: rgba(1, 13, 29, 0.72);
+  backdrop-filter: blur(5px);
+}
+
+.intake-modal-head {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.35rem;
+  border-bottom: 1px solid rgba(2, 38, 156, 0.12);
+  background: #fff;
+}
+
+.intake-modal-head h2 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+.intake-modal-close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(2, 38, 156, 0.08);
+  color: var(--brand);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.intake-modal-close:hover,
+.intake-modal-close:focus-visible {
+  background: var(--brand);
+  color: #fff;
+}
+
+.intake-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+}
+
+.intake-modal-body iframe {
+  display: block;
+  width: 100%;
+  min-height: 3482px;
+  border: 0;
+  border-radius: 0 0 1.25rem 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .intake-modal {
+    width: calc(100vw - 1rem);
+    height: 90dvh;
+    border-radius: 1rem;
+  }
+
+  .intake-modal-head {
+    padding: 0.8rem 1rem;
+  }
+}
+
 .paper-pay {
   padding-top: 0;
 }

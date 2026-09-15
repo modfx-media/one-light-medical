@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { IntakeFormModal } from "@/components/intake-form-modal";
 import { JsonLd } from "@/components/json-ld";
 import { BUSINESS } from "@/lib/site";
 import { getPageSchema } from "@/lib/schema";
@@ -56,11 +57,9 @@ export function PaperworkPage() {
             </p>
           </header>
 
-          <p className="paper-form-action">
-            <Link href="/contact/" className="btn btn-gradient">
-              <span aria-hidden="true">♦️</span> One Light Medical Intake Form
-            </Link>
-          </p>
+          <div className="paper-form-action">
+            <IntakeFormModal />
+          </div>
         </div>
       </section>
 

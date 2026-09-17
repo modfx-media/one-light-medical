@@ -8,8 +8,8 @@ robots: "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:
 ogImage: "https://onelightmedical.com/wp-content/uploads/2026/08/what-sciatica-patients-in-amarillo-featured.webp"
 schemaTypes: ["BlogPosting", "ImageObject", "Organization", "Person", "WebPage", "WebSite"]
 h1: "What Sciatica Patients in Amarillo Should Know About SoftWave Therapy"
-publishedTime: "2026-08-31T00:00:00+00:00"
-modifiedTime: "2026-08-31T18:40:32+00:00"
+publishedTime: "2026-09-01T17:00:00+00:00"
+modifiedTime: "2026-09-01T17:00:00+00:00"
 ogTitle: "SoftWave Therapy Options for Sciatica Relief in Amarillo"
 ogDescription: "Learn how SoftWave Therapy may ease nerve pain and improve mobility with sciatica treatment in Amarillo at an integrative, non-surgical clinic for lasting relief."
 ogType: "article"

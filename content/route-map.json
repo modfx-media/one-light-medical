@@ -1,5 +1,45 @@
 [
   {
+    "path": "/neuropathy-warning-signs-and-care-options-in-amarillo/",
+    "type": "post",
+    "title": "Neuropathy Warning Signs and Care Options in Amarillo",
+    "metaDescription": "Learn the key signs that neuropathy needs attention and how neuropathy treatment in Amarillo can help ease pain, numbness, and tingling fast",
+    "canonical": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/",
+    "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+    "ogImage": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png",
+    "schemaTypes": [
+      "BlogPosting",
+      "ImageObject",
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "h1": "When Numbness and Tingling Are No Longer “Normal”",
+    "publishedTime": "2026-09-07T17:00:00+00:00",
+    "modifiedTime": "2026-09-07T17:00:00+00:00"
+  },
+  {
+    "path": "/fall-pain-relief-tips-for-active-adults-in-amarillo/",
+    "type": "post",
+    "title": "Fall Pain Relief Tips for Active Adults in Amarillo",
+    "metaDescription": "Stay active after summer with expert pain management in Amarillo, TX, featuring chiropractic care, SoftWave therapy, and spinal decompression.",
+    "canonical": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/",
+    "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+    "ogImage": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png",
+    "schemaTypes": [
+      "BlogPosting",
+      "ImageObject",
+      "Organization",
+      "Person",
+      "WebPage",
+      "WebSite"
+    ],
+    "h1": "Resetting After Summer: Get Back to Moving Pain-Free",
+    "publishedTime": "2026-09-14T17:00:00+00:00",
+    "modifiedTime": "2026-09-14T17:00:00+00:00"
+  },
+  {
     "path": "/unexpected-benefits-of-spinal-decompression-for-knee-pain/",
     "type": "post",
     "title": "Spinal Decompression Therapy for Knee Pain Relief",
@@ -96,8 +136,8 @@
       "WebSite"
     ],
     "h1": "What Sciatica Patients in Amarillo Should Know About SoftWave Therapy",
-    "publishedTime": "2026-08-31T00:00:00+00:00",
-    "modifiedTime": "2026-08-31T18:40:32+00:00"
+    "publishedTime": "2026-09-01T17:00:00+00:00",
+    "modifiedTime": "2026-09-01T17:00:00+00:00"
   },
   {
     "path": "/knee-pain-at-work-ergonomic-fixes-for-any-job/",
@@ -1429,7 +1469,9 @@
     "canonical": "https://onelightmedical.com/privacy-policy/",
     "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
     "ogImage": null,
-    "schemaTypes": ["WebPage"],
+    "schemaTypes": [
+      "WebPage"
+    ],
     "h1": "Privacy Policy"
   },
   {
@@ -1440,7 +1482,9 @@
     "canonical": "https://onelightmedical.com/terms-and-conditions/",
     "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
     "ogImage": null,
-    "schemaTypes": ["WebPage"],
+    "schemaTypes": [
+      "WebPage"
+    ],
     "h1": "Terms & Conditions"
   }
 ]

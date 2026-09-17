@@ -1,5 +1,349 @@
 [
   {
+    "url": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/",
+    "path": "/neuropathy-warning-signs-and-care-options-in-amarillo/",
+    "slug": "neuropathy-warning-signs-and-care-options-in-amarillo",
+    "sitemap": "post",
+    "lastmod": "2026-09-07T17:00:00+00:00",
+    "type": "post",
+    "meta": {
+      "openGraph": {
+        "locale": "en_US",
+        "type": "article",
+        "title": "Neuropathy Warning Signs and Care Options in Amarillo",
+        "description": "Learn the key signs that neuropathy needs attention and how neuropathy treatment in Amarillo can help ease pain, numbness, and tingling fast",
+        "url": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/",
+        "site_name": "One Light Medical",
+        "image": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png",
+        "image:secure_url": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png",
+        "image:width": "1536",
+        "image:height": "1024",
+        "image:alt": "Neuropathy warning signs and care in Amarillo",
+        "image:type": "image/png"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Neuropathy Warning Signs and Care Options in Amarillo",
+        "description": "Learn the key signs that neuropathy needs attention and how neuropathy treatment in Amarillo can help ease pain, numbness, and tingling fast",
+        "image": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png",
+        "label1": "Written by",
+        "data1": "byron@modfxmedia.com",
+        "label2": "Time to read",
+        "data2": "8 minutes"
+      },
+      "other": {
+        "article:section": "Therapy",
+        "article:published_time": "2026-09-07T17:00:00+00:00"
+      },
+      "title": "Neuropathy Warning Signs and Care Options in Amarillo",
+      "description": "Learn the key signs that neuropathy needs attention and how neuropathy treatment in Amarillo can help ease pain, numbness, and tingling fast",
+      "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+      "canonical": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/"
+    },
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": [
+              "Person",
+              "Organization"
+            ],
+            "@id": "https://onelightmedical.com/#person",
+            "name": "One Light Medical"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://onelightmedical.com/#website",
+            "url": "https://onelightmedical.com",
+            "name": "One Light Medical",
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png",
+            "url": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png",
+            "width": "1536",
+            "height": "1024",
+            "caption": "Neuropathy warning signs and care in Amarillo",
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/#webpage",
+            "url": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/",
+            "name": "Neuropathy Warning Signs and Care Options in Amarillo",
+            "datePublished": "2026-09-07T17:00:00+00:00",
+            "dateModified": "2026-09-07T17:00:00+00:00",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "name": "byron@modfxmedia.com",
+            "url": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "url": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "caption": "byron@modfxmedia.com",
+              "inLanguage": "en-US"
+            },
+            "sameAs": [
+              "https://onelightmedical.com"
+            ]
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Neuropathy Warning Signs and Care Options in Amarillo",
+            "datePublished": "2026-09-07T17:00:00+00:00",
+            "dateModified": "2026-09-07T17:00:00+00:00",
+            "articleSection": "Therapy",
+            "author": {
+              "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+              "name": "byron@modfxmedia.com"
+            },
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "description": "Learn the key signs that neuropathy needs attention and how neuropathy treatment in Amarillo can help ease pain, numbness, and tingling fast",
+            "name": "Neuropathy Warning Signs and Care Options in Amarillo",
+            "@id": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/#richSnippet",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/#webpage"
+            },
+            "image": {
+              "@id": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png"
+            },
+            "inLanguage": "en-US",
+            "mainEntityOfPage": {
+              "@id": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/#webpage"
+            }
+          }
+        ]
+      }
+    ],
+    "h1": "When Numbness and Tingling Are No Longer “Normal”",
+    "dates": {
+      "datePublished": "2026-09-07T17:00:00+00:00",
+      "dateModified": "2026-09-07T17:00:00+00:00"
+    },
+    "blocks": [],
+    "images": [
+      {
+        "src": "https://onelightmedical.com/images/neuropathy-warning-signs-amarillo.png",
+        "alt": "Neuropathy warning signs and care in Amarillo",
+        "width": 1536,
+        "height": 1024
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/neuropathy/",
+        "text": "neuropathy treatment in Amarillo"
+      },
+      {
+        "href": "/softwave-trt-treatment/",
+        "text": "SoftWave TRT"
+      },
+      {
+        "href": "/spinal-decompression/",
+        "text": "spinal decompression"
+      },
+      {
+        "href": "/chiropractic-care/",
+        "text": "chiropractic care"
+      },
+      {
+        "href": "/contact/",
+        "text": "Schedule a visit"
+      },
+      {
+        "href": "/contact/",
+        "text": "contact us"
+      }
+    ]
+  },
+  {
+    "url": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/",
+    "path": "/fall-pain-relief-tips-for-active-adults-in-amarillo/",
+    "slug": "fall-pain-relief-tips-for-active-adults-in-amarillo",
+    "sitemap": "post",
+    "lastmod": "2026-09-14T17:00:00+00:00",
+    "type": "post",
+    "meta": {
+      "openGraph": {
+        "locale": "en_US",
+        "type": "article",
+        "title": "Fall Pain Relief Tips for Active Adults in Amarillo",
+        "description": "Stay active after summer with expert pain management in Amarillo, TX, featuring chiropractic care, SoftWave therapy, and spinal decompression.",
+        "url": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/",
+        "site_name": "One Light Medical",
+        "image": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png",
+        "image:secure_url": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png",
+        "image:width": "1536",
+        "image:height": "1024",
+        "image:alt": "Fall pain relief for active adults in Amarillo",
+        "image:type": "image/png"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Fall Pain Relief Tips for Active Adults in Amarillo",
+        "description": "Stay active after summer with expert pain management in Amarillo, TX, featuring chiropractic care, SoftWave therapy, and spinal decompression.",
+        "image": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png",
+        "label1": "Written by",
+        "data1": "byron@modfxmedia.com",
+        "label2": "Time to read",
+        "data2": "8 minutes"
+      },
+      "other": {
+        "article:section": "Therapy",
+        "article:published_time": "2026-09-14T17:00:00+00:00"
+      },
+      "title": "Fall Pain Relief Tips for Active Adults in Amarillo",
+      "description": "Stay active after summer with expert pain management in Amarillo, TX, featuring chiropractic care, SoftWave therapy, and spinal decompression.",
+      "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+      "canonical": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/"
+    },
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": [
+              "Person",
+              "Organization"
+            ],
+            "@id": "https://onelightmedical.com/#person",
+            "name": "One Light Medical"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://onelightmedical.com/#website",
+            "url": "https://onelightmedical.com",
+            "name": "One Light Medical",
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png",
+            "url": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png",
+            "width": "1536",
+            "height": "1024",
+            "caption": "Fall pain relief for active adults in Amarillo",
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/#webpage",
+            "url": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/",
+            "name": "Fall Pain Relief Tips for Active Adults in Amarillo",
+            "datePublished": "2026-09-14T17:00:00+00:00",
+            "dateModified": "2026-09-14T17:00:00+00:00",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "name": "byron@modfxmedia.com",
+            "url": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "url": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "caption": "byron@modfxmedia.com",
+              "inLanguage": "en-US"
+            },
+            "sameAs": [
+              "https://onelightmedical.com"
+            ]
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Fall Pain Relief Tips for Active Adults in Amarillo",
+            "datePublished": "2026-09-14T17:00:00+00:00",
+            "dateModified": "2026-09-14T17:00:00+00:00",
+            "articleSection": "Therapy",
+            "author": {
+              "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+              "name": "byron@modfxmedia.com"
+            },
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "description": "Stay active after summer with expert pain management in Amarillo, TX, featuring chiropractic care, SoftWave therapy, and spinal decompression.",
+            "name": "Fall Pain Relief Tips for Active Adults in Amarillo",
+            "@id": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/#richSnippet",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/#webpage"
+            },
+            "image": {
+              "@id": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png"
+            },
+            "inLanguage": "en-US",
+            "mainEntityOfPage": {
+              "@id": "https://onelightmedical.com/fall-pain-relief-tips-for-active-adults-in-amarillo/#webpage"
+            }
+          }
+        ]
+      }
+    ],
+    "h1": "Resetting After Summer: Get Back to Moving Pain-Free",
+    "dates": {
+      "datePublished": "2026-09-14T17:00:00+00:00",
+      "dateModified": "2026-09-14T17:00:00+00:00"
+    },
+    "blocks": [],
+    "images": [
+      {
+        "src": "https://onelightmedical.com/images/fall-pain-relief-active-adults-amarillo.png",
+        "alt": "Fall pain relief for active adults in Amarillo",
+        "width": 1536,
+        "height": 1024
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/chiropractic-care/",
+        "text": "chiropractic care"
+      },
+      {
+        "href": "/spinal-decompression/",
+        "text": "spinal decompression"
+      },
+      {
+        "href": "/softwave-trt-treatment/",
+        "text": "SoftWave therapy"
+      },
+      {
+        "href": "/contact/",
+        "text": "Schedule an appointment"
+      },
+      {
+        "href": "/contact/",
+        "text": "contact us"
+      }
+    ]
+  },
+  {
     "url": "https://onelightmedical.com/knee-pain-at-work-ergonomic-fixes-for-any-job/",
     "path": "/knee-pain-at-work-ergonomic-fixes-for-any-job/",
     "slug": "knee-pain-at-work-ergonomic-fixes-for-any-job",

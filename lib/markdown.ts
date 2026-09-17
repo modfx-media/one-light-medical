@@ -168,6 +168,7 @@ export function loadPage(slug: string): PageDocument | null {
     return null;
   }
 
+  raw = raw.replace(/\r\n/g, "\n");
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return null;
 

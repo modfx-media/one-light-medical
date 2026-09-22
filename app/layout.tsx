@@ -5,7 +5,6 @@ import Script from "next/script";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import favicon from "@/images/favicon.webp";
 import { getDisplayedGoogleReviews } from "@/lib/google-reviews";
 import { getMedicalOrganizationSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
@@ -32,10 +31,6 @@ const adobeKit = process.env.NEXT_PUBLIC_ADOBE_FONTS_KIT;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  icons: {
-    icon: [{ url: favicon.src, type: "image/webp" }],
-    shortcut: [{ url: favicon.src, type: "image/webp" }],
-  },
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {

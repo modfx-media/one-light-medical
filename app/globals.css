@@ -1423,6 +1423,7 @@ body:not(:has(.home)) .site-header-inner {
 .deck {
   container-type: inline-size;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   width: min(32.3125rem, calc(100% - 2.5rem));
   margin-inline: auto;
   padding: clamp(0.75rem, 2vw, 1.25rem);
@@ -1431,6 +1432,8 @@ body:not(:has(.home)) .site-header-inner {
 
 .deck > * {
   grid-area: 1 / 1;
+  min-width: 0;
+  width: 100%;
 }
 
 .deck-slab,

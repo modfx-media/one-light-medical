@@ -10,10 +10,8 @@ import {
 
 export type Testimonial = {
   name: string;
-  date?: string;
-  iso?: string;
-  sourceLabel?: string;
   quote: string;
+  rating: number;
 };
 
 /**
@@ -130,6 +128,9 @@ export function TestimonialDeck({ items }: { items: Testimonial[] }) {
                 </g>
               </svg>
               <p className="deck-name">{item.name}</p>
+              <p className="deck-stars" aria-label={`${item.rating} out of 5 stars`}>
+                ★★★★★
+              </p>
               <blockquote className="deck-quote">
                 <p>{item.quote}</p>
               </blockquote>

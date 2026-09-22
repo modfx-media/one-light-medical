@@ -1334,6 +1334,41 @@ body:not(:has(.home)) .site-header-inner {
   line-height: 1.125;
 }
 
+.google-reviews-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.7rem;
+  margin-top: 1rem;
+  color: var(--ink-on-light);
+  font-size: var(--t-small);
+}
+
+.google-reviews-brand,
+.google-reviews-summary strong {
+  font-weight: 700;
+}
+
+.google-reviews-brand {
+  color: #4285f4;
+}
+
+.google-review-stars,
+.deck-stars {
+  color: #f5a623;
+  letter-spacing: 0.08em;
+}
+
+.google-reviews-link {
+  display: inline-block;
+  margin-top: 0.7rem;
+  color: var(--brand);
+  font-size: var(--t-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 /* Scroll-pinned deck
    ------------------
    Unpinned -- no script, or reduced motion -- the track is an ordinary block and
@@ -1458,6 +1493,12 @@ body:not(:has(.home)) .site-header-inner {
   font-weight: 400;
   line-height: 1.375;
   letter-spacing: -0.005em;
+}
+
+.deck-stars {
+  margin: max(0.25rem, 1.2cqw) 0 0;
+  font-size: max(0.82rem, 2.65cqw);
+  line-height: 1;
 }
 
 .deck-quote {

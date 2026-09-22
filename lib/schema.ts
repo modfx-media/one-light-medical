@@ -1,4 +1,9 @@
 import { getRouteByPath } from "@/lib/content";
+import {
+  isFiveStarReview,
+  type GoogleReview,
+  type GoogleReviewsMeta,
+} from "@/lib/reviews";
 import { BUSINESS, SITE_URL, SOCIAL_LINKS, SERVICE_NAV } from "@/lib/site";
 
 /**
@@ -17,10 +22,20 @@ const MEDICAL_ORGANIZATION_ID = `${SITE_URL}/#organization`;
  * It is hoisted into the root layout so the NAP and the eight-service offer
  * catalog are present sitewide.
  */
-export const MEDICAL_ORGANIZATION = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
+export function getMedicalOrganizationSchema({
+  reviews,
+  meta,
+}: {
+  reviews: GoogleReview[];
+  meta: GoogleReviewsMeta;
+}) {
+  const visibleReviews = reviews.filter(isFiveStarReview);
+  const hasAggregateRating = meta.rating > 0 && meta.reviewCount > 0;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
       "@type": "MedicalOrganization",
       "@id": MEDICAL_ORGANIZATION_ID,
       name: BUSINESS.name,
@@ -52,6 +67,30 @@ export const MEDICAL_ORGANIZATION = {
           closes: "17:30",
         },
       ],
+      ...(hasAggregateRating
+        ? {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: meta.rating,
+              reviewCount: meta.reviewCount,
+              bestRating: "5",
+            },
+          }
+        : {}),
+      ...(visibleReviews.length > 0
+        ? {
+            review: visibleReviews.map((review) => ({
+              "@type": "Review",
+              author: { "@type": "Person", name: review.name },
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+              },
+              reviewBody: review.quote,
+            })),
+          }
+        : {}),
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Medical Services",
@@ -61,9 +100,10 @@ export const MEDICAL_ORGANIZATION = {
           itemOffered: { "@type": "Service", name: service.label },
         })),
       },
-    },
-  ],
-};
+      },
+    ],
+  };
+}
 
 function isMedicalOrganizationBlock(block: unknown): boolean {
   if (typeof block !== "object" || block === null) return false;

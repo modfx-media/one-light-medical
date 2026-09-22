@@ -1,11 +1,10 @@
 import Link from "next/link";
 
+import { GoogleReviewsSection } from "@/components/google-reviews-section";
 import { JsonLd } from "@/components/json-ld";
 import { OutcomeDials } from "@/components/outcome-dials";
 import { RegenerativePillars } from "@/components/regenerative-pillars";
-import { TestimonialDeck } from "@/components/testimonial-deck";
 import faqs from "@/content/faqs.json";
-import testimonials from "@/content/testimonials.json";
 import { getPageSchema } from "@/lib/schema";
 
 // The FAQ copy is ours, so it gets the markup that describes it. Everything the
@@ -328,20 +327,7 @@ export function HomePage() {
           <OutcomeDials items={OUTCOMES} />
         </section>
 
-        <section className="testimonials" id="Testimonials">
-          <div className="wrap testimonials-head">
-            <h2>
-              What They’re Talking
-              <br className="br-lg" /> About Our Center?
-            </h2>
-            <p>
-              Dozens of stories, in their own words, wheelchairs left behind, migraines gone,
-              medications reduced, lives reclaimed.
-            </p>
-          </div>
-
-          <TestimonialDeck items={testimonials.items} />
-        </section>
+        <GoogleReviewsSection />
 
         <section className="faq">
           <div className="wrap">

@@ -5,7 +5,9 @@ import Script from "next/script";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { MEDICAL_ORGANIZATION } from "@/lib/schema";
+import favicon from "@/images/favicon.webp";
+import { getDisplayedGoogleReviews } from "@/lib/google-reviews";
+import { getMedicalOrganizationSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -30,9 +32,15 @@ const adobeKit = process.env.NEXT_PUBLIC_ADOBE_FONTS_KIT;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: [{ url: favicon.src, type: "image/webp" }],
+    shortcut: [{ url: favicon.src, type: "image/webp" }],
+  },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const reviews = await getDisplayedGoogleReviews();
+
   return (
     <html lang="en" className={sans.variable}>
       <head>
@@ -48,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         {/* Sitewide NAP and service catalog. The Organization and WebSite nodes
             stay in each page's own graph, matching the legacy markup. */}
-        <JsonLd graphs={[MEDICAL_ORGANIZATION]} />
+        <JsonLd graphs={[getMedicalOrganizationSchema(reviews)]} />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

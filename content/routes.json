@@ -1,5 +1,171 @@
 [
   {
+    "url": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/",
+    "path": "/shockwave-therapy-in-amarillo-key-questions-to-ask/",
+    "slug": "shockwave-therapy-in-amarillo-key-questions-to-ask",
+    "sitemap": "post",
+    "lastmod": "2026-09-21T17:00:00+00:00",
+    "type": "post",
+    "meta": {
+      "openGraph": {
+        "locale": "en_US",
+        "type": "article",
+        "title": "Shockwave Therapy in Amarillo: Key Questions to Ask",
+        "description": "Learn what to ask before starting shockwave therapy in Amarillo, including candidacy, expected results, session count, costs, and recovery time",
+        "url": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/",
+        "site_name": "One Light Medical",
+        "image": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png",
+        "image:secure_url": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png",
+        "image:width": "1536",
+        "image:height": "1024",
+        "image:alt": "Woman holding a painful ankle while considering shockwave therapy",
+        "image:type": "image/png"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Shockwave Therapy in Amarillo: Key Questions to Ask",
+        "description": "Learn what to ask before starting shockwave therapy in Amarillo, including candidacy, expected results, session count, costs, and recovery time",
+        "image": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png",
+        "label1": "Written by",
+        "data1": "byron@modfxmedia.com",
+        "label2": "Time to read",
+        "data2": "8 minutes"
+      },
+      "other": {
+        "article:section": "Therapy",
+        "article:published_time": "2026-09-21T17:00:00+00:00"
+      },
+      "title": "Shockwave Therapy in Amarillo: Key Questions to Ask",
+      "description": "Learn what to ask before starting shockwave therapy in Amarillo, including candidacy, expected results, session count, costs, and recovery time",
+      "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+      "canonical": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/"
+    },
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": [
+              "Person",
+              "Organization"
+            ],
+            "@id": "https://onelightmedical.com/#person",
+            "name": "One Light Medical"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://onelightmedical.com/#website",
+            "url": "https://onelightmedical.com",
+            "name": "One Light Medical",
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png",
+            "url": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png",
+            "width": "1536",
+            "height": "1024",
+            "caption": "Woman holding a painful ankle while considering shockwave therapy",
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/#webpage",
+            "url": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/",
+            "name": "Shockwave Therapy in Amarillo: Key Questions to Ask",
+            "datePublished": "2026-09-21T17:00:00+00:00",
+            "dateModified": "2026-09-21T17:00:00+00:00",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "name": "byron@modfxmedia.com",
+            "url": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "url": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "caption": "byron@modfxmedia.com",
+              "inLanguage": "en-US"
+            },
+            "sameAs": [
+              "https://onelightmedical.com"
+            ]
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Shockwave Therapy in Amarillo: Key Questions to Ask",
+            "datePublished": "2026-09-21T17:00:00+00:00",
+            "dateModified": "2026-09-21T17:00:00+00:00",
+            "articleSection": "Therapy",
+            "author": {
+              "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+              "name": "byron@modfxmedia.com"
+            },
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "description": "Learn what to ask before starting shockwave therapy in Amarillo, including candidacy, expected results, session count, costs, and recovery time",
+            "name": "Shockwave Therapy in Amarillo: Key Questions to Ask",
+            "@id": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/#richSnippet",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/#webpage"
+            },
+            "image": {
+              "@id": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png"
+            },
+            "inLanguage": "en-US",
+            "mainEntityOfPage": {
+              "@id": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/#webpage"
+            }
+          }
+        ]
+      }
+    ],
+    "h1": "Shockwave Therapy in Amarillo: Key Questions to Ask",
+    "dates": {
+      "datePublished": "2026-09-21T17:00:00+00:00",
+      "dateModified": "2026-09-21T17:00:00+00:00"
+    },
+    "blocks": [],
+    "images": [
+      {
+        "src": "https://onelightmedical.com/images/shockwave-therapy-questions-amarillo.png",
+        "alt": "Woman holding a painful ankle while considering shockwave therapy",
+        "width": 1536,
+        "height": 1024
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/softwave-trt-treatment/",
+        "text": "shockwave therapy in Amarillo"
+      },
+      {
+        "href": "/softwave-trt-treatment/",
+        "text": "SoftWave TRT"
+      },
+      {
+        "href": "/spinal-decompression/",
+        "text": "spinal decompression"
+      },
+      {
+        "href": "/contact/",
+        "text": "contact us"
+      }
+    ]
+  },
+  {
     "url": "https://onelightmedical.com/neuropathy-warning-signs-and-care-options-in-amarillo/",
     "path": "/neuropathy-warning-signs-and-care-options-in-amarillo/",
     "slug": "neuropathy-warning-signs-and-care-options-in-amarillo",

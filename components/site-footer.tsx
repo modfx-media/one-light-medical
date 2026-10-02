@@ -96,6 +96,12 @@ export function SiteFooter() {
             </Link>
           ))}
         </nav>
+        <p className="footer-credit">
+          POWERED BY{" "}
+          <a href="https://modfxmedia.com" rel="noopener noreferrer" target="_blank">
+            MODFXMEDIA
+          </a>
+        </p>
       </div>
     </footer>
   );

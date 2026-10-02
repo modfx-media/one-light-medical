@@ -2009,6 +2009,23 @@ main > article a {
   color: var(--brand);
 }
 
+.footer-credit {
+  margin: 0.85rem 0 0;
+  color: #041215;
+  font-size: var(--t-small);
+  letter-spacing: 0.02em;
+}
+
+.footer-credit a {
+  color: #041215;
+  font-weight: 700;
+  text-decoration-color: rgba(4, 18, 21, 0.35);
+}
+
+.footer-credit a:hover {
+  color: var(--brand);
+}
+
 @media (max-width: 900px) {
   .reason-grid {
     grid-template-columns: 1fr;

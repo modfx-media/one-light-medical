@@ -17,13 +17,18 @@ import { getCorsOrigins, getServerURL } from './lib/cms/url'
 
 const dirname = process.cwd()
 
-const onVercel = Boolean(process.env.VERCEL)
-const isImport = process.env.CMS_IMPORT_APPLY === '1'
+const disablePush =
+  Boolean(process.env.VERCEL) ||
+  process.env.CMS_IMPORT_APPLY === '1' ||
+  process.env.PAYLOAD_PUSH === 'false'
+
+const blobToken = process.env.BLOB_READ_WRITE_TOKEN
 
 export default buildConfig({
   admin: {
     importMap: {
       baseDir: path.resolve(/* turbopackIgnore: true */ dirname),
+      importMapFile: path.resolve(dirname, 'app/(payload)/admin/importMap.js'),
     },
     livePreview: {
       breakpoints: [
@@ -42,7 +47,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL || '',
     },
-    push: !onVercel && !isImport,
+    push: !disablePush,
   }),
   editor: lexicalEditor(),
   globals: [Header, Footer, SiteSettings],
@@ -59,12 +64,16 @@ export default buildConfig({
       tabbedUI: true,
       uploadsCollection: 'media',
     }),
-    vercelBlobStorage({
-      collections: {
-        media: true,
-      },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
-    }),
+    ...(blobToken
+      ? [
+          vercelBlobStorage({
+            collections: {
+              media: true,
+            },
+            token: blobToken,
+          }),
+        ]
+      : []),
   ],
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: getServerURL(),

@@ -1,22 +1,30 @@
-import { toPublicPath } from '@/lib/cms/path'
+import { cmsPathFromSlug, normalizeCmsPath, toPublicPath } from '@/lib/cms/path'
 
 /**
  * Live preview / admin preview URL. Returns null when the path is missing
  * or would produce `/null` segments.
  */
-export function previewFromPath(path: unknown): string | null {
+export function previewFromPath(path?: unknown, slug?: unknown): string | null {
   const secret = process.env.PREVIEW_SECRET
   if (!secret) return null
-  if (typeof path !== 'string') return null
-  if (path.includes('null') || path.includes('undefined')) return null
 
-  const trimmed = path.trim()
-  if (!trimmed.startsWith('/')) return null
-  if (trimmed !== '/' && /\/{2,}/.test(trimmed)) return null
+  const fromPath =
+    typeof path === 'string' && path.trim() && !path.includes('null') && !path.includes('undefined')
+      ? normalizeCmsPath(path)
+      : null
 
-  const parts = trimmed.split('/').filter(Boolean)
+  const fromSlug =
+    typeof slug === 'string' && slug.trim() && slug !== 'null' && slug !== 'undefined'
+      ? cmsPathFromSlug(slug)
+      : null
+
+  const resolved = fromPath ?? fromSlug
+  if (!resolved) return null
+  if (resolved.includes('null') || resolved.includes('undefined')) return null
+
+  const parts = resolved.split('/').filter(Boolean)
   if (parts.some((part) => part === 'null' || part === 'undefined')) return null
 
-  const publicPath = toPublicPath(trimmed)
+  const publicPath = toPublicPath(resolved)
   return `/next/preview?path=${encodeURIComponent(publicPath)}&previewSecret=${encodeURIComponent(secret)}`
 }

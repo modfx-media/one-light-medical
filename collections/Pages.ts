@@ -22,9 +22,9 @@ export const Pages: CollectionConfig = {
   admin: {
     defaultColumns: ['title', 'path', 'updatedAt'],
     livePreview: {
-      url: ({ data }) => previewFromPath(data?.path),
+      url: ({ data }) => previewFromPath(data?.path, data?.slug),
     },
-    preview: (data) => previewFromPath(data?.path),
+    preview: (data) => previewFromPath(data?.path, data?.slug),
     useAsTitle: 'title',
   },
   fields: [

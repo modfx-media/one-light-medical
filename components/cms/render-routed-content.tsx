@@ -1,5 +1,6 @@
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 
 import type { RoutedDoc } from '@/lib/cms/query'
 
@@ -8,6 +9,13 @@ function mediaUrl(value: unknown): string | null {
     return value.url
   }
   return null
+}
+
+function hasRenderableContent(doc: RoutedDoc): boolean {
+  const layout = Array.isArray(doc.layout) ? doc.layout : []
+  if (layout.length > 0) return true
+  if (doc.body) return true
+  return false
 }
 
 function BlockLayout({ layout }: { layout: unknown[] }) {
@@ -24,6 +32,8 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
             <section key={key} className="cms-hero wrap">
               {typeof item.heading === 'string' ? <h1>{item.heading}</h1> : null}
               {typeof item.subheading === 'string' ? <p>{item.subheading}</p> : null}
+              {/* CMS media URLs are absolute (Blob/local); next/image needs per-host allowlisting. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               {image ? <img src={image} alt="" /> : null}
             </section>
           )
@@ -42,6 +52,7 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
           if (!image) return null
           return (
             <figure key={key} className="wrap">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={image} alt={typeof item.caption === 'string' ? item.caption : ''} />
               {typeof item.caption === 'string' ? <figcaption>{item.caption}</figcaption> : null}
             </figure>
@@ -67,7 +78,15 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
   )
 }
 
-export function RenderRoutedContent({ doc }: { doc: RoutedDoc }) {
+export function RenderRoutedContent({
+  doc,
+  fallback,
+}: {
+  doc: RoutedDoc
+  fallback: ReactNode
+}) {
+  if (!hasRenderableContent(doc)) return fallback
+
   const heading = doc.h1 || doc.title
   const layout = Array.isArray(doc.layout) ? doc.layout : []
 

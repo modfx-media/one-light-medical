@@ -3,8 +3,6 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { getPayload } from 'payload'
 
-import config from '../payload.config'
-
 loadEnv({ path: '.env' })
 loadEnv({ path: '.env.local', override: true })
 
@@ -19,6 +17,10 @@ type ExportFile = {
   version: number
   records: ExportRecord[]
   globals?: Record<string, Record<string, unknown>>
+}
+
+function hasApplyFlag() {
+  return process.argv.includes('--apply') && process.env.CMS_IMPORT_APPLY === '1'
 }
 
 function skipRef(value: unknown): unknown {
@@ -59,8 +61,19 @@ async function findExisting(
 }
 
 async function main() {
-  const apply = process.argv.includes('--apply') || process.env.CMS_IMPORT_APPLY === '1'
-  const file = path.join(process.cwd(), 'data', 'content-export.json')
+  if (process.argv.includes('--publish')) {
+    console.error('Refusing to bulk-publish. Import is draft-only.')
+    process.exit(1)
+  }
+
+  if (process.argv.includes('--apply') && process.env.CMS_IMPORT_APPLY !== '1') {
+    console.error('Set CMS_IMPORT_APPLY=1 with --apply to write drafts.')
+    process.exit(1)
+  }
+
+  const apply = hasApplyFlag()
+  const fileArg = process.argv.find((arg) => arg.endsWith('.json'))
+  const file = path.resolve(fileArg ?? path.join(process.cwd(), 'data', 'content-export.json'))
   const exported = JSON.parse(readFileSync(file, 'utf8')) as ExportFile
 
   if (exported.version !== 1) {
@@ -77,12 +90,14 @@ async function main() {
 
   if (!apply) {
     console.log(
-      `Dry run: ${exported.records.length} records. Re-run with --apply (CMS_IMPORT_APPLY=1).`,
+      `Dry run: ${exported.records.length} records as drafts. Re-run with CMS_IMPORT_APPLY=1 and --apply.`,
     )
     return
   }
 
+  // Load Payload config only after dotenv so PAYLOAD_SECRET / DATABASE_URL are set.
   process.env.CMS_IMPORT_APPLY = '1'
+  const { default: config } = await import('../payload.config')
   const payload = await getPayload({ config })
 
   for (const collection of order) {

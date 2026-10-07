@@ -33,6 +33,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# env files — never commit secrets
+.env*
+!.env.example
+
+# payload local uploads
 /media
 
 # vercel

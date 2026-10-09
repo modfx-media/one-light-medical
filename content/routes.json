@@ -1,5 +1,321 @@
 [
   {
+    "url": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/",
+    "path": "/amarillo-neuropathy-care-match-treatment-to-cause/",
+    "slug": "amarillo-neuropathy-care-match-treatment-to-cause",
+    "sitemap": "post",
+    "lastmod": "2026-10-05T17:00:00+00:00",
+    "type": "post",
+    "meta": {
+      "openGraph": {
+        "locale": "en_US",
+        "type": "article",
+        "title": "Amarillo Neuropathy Care: Match Treatment to Cause",
+        "description": "Learn how to choose neuropathy treatment in Amarillo by cause and symptom pattern, including diabetic neuropathy, chemo-related nerve pain, and entrapment",
+        "url": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/",
+        "site_name": "One Light Medical",
+        "image": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp",
+        "image:secure_url": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp",
+        "image:width": "2500",
+        "image:height": "1667",
+        "image:alt": "Amarillo Neuropathy Care: Match Treatment to Cause",
+        "image:type": "image/webp"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Amarillo Neuropathy Care: Match Treatment to Cause",
+        "description": "Learn how to choose neuropathy treatment in Amarillo by cause and symptom pattern, including diabetic neuropathy, chemo-related nerve pain, and entrapment",
+        "image": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp",
+        "label1": "Written by",
+        "data1": "byron@modfxmedia.com",
+        "label2": "Time to read",
+        "data2": "7 minutes"
+      },
+      "other": {
+        "article:section": "Therapy",
+        "article:published_time": "2026-10-05T17:00:00+00:00"
+      },
+      "title": "Amarillo Neuropathy Care: Match Treatment to Cause",
+      "description": "Learn how to choose neuropathy treatment in Amarillo by cause and symptom pattern, including diabetic neuropathy, chemo-related nerve pain, and entrapment",
+      "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+      "canonical": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/"
+    },
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": [
+              "Person",
+              "Organization"
+            ],
+            "@id": "https://onelightmedical.com/#person",
+            "name": "One Light Medical"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://onelightmedical.com/#website",
+            "url": "https://onelightmedical.com",
+            "name": "One Light Medical",
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp",
+            "url": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp",
+            "width": "2500",
+            "height": "1667",
+            "caption": "Amarillo Neuropathy Care: Match Treatment to Cause",
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/#webpage",
+            "url": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/",
+            "name": "Amarillo Neuropathy Care: Match Treatment to Cause",
+            "datePublished": "2026-10-05T17:00:00+00:00",
+            "dateModified": "2026-10-05T17:00:00+00:00",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "name": "byron@modfxmedia.com",
+            "url": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "url": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "caption": "byron@modfxmedia.com",
+              "inLanguage": "en-US"
+            },
+            "sameAs": [
+              "https://onelightmedical.com"
+            ]
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Finally Get Answers About Your Neuropathy Pain",
+            "datePublished": "2026-10-05T17:00:00+00:00",
+            "dateModified": "2026-10-05T17:00:00+00:00",
+            "articleSection": "Therapy",
+            "author": {
+              "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+              "name": "byron@modfxmedia.com"
+            },
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "description": "Learn how to choose neuropathy treatment in Amarillo by cause and symptom pattern, including diabetic neuropathy, chemo-related nerve pain, and entrapment",
+            "name": "Amarillo Neuropathy Care: Match Treatment to Cause",
+            "@id": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/#richSnippet",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/#webpage"
+            },
+            "image": {
+              "@id": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp"
+            },
+            "inLanguage": "en-US",
+            "mainEntityOfPage": {
+              "@id": "https://onelightmedical.com/amarillo-neuropathy-care-match-treatment-to-cause/#webpage"
+            }
+          }
+        ]
+      }
+    ],
+    "h1": "Finally Get Answers About Your Neuropathy Pain",
+    "dates": {
+      "datePublished": "2026-10-05T17:00:00+00:00",
+      "dateModified": "2026-10-05T17:00:00+00:00"
+    },
+    "blocks": [],
+    "images": [
+      {
+        "src": "https://onelightmedical.com/images/amarillo-neuropathy-care-match-treatment-to-cause.webp",
+        "alt": "Amarillo Neuropathy Care: Match Treatment to Cause",
+        "width": 2500,
+        "height": 1667
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/neuropathy/",
+        "text": "neuropathy treatment in Amarillo"
+      },
+      {
+        "href": "/contact/",
+        "text": "contact us"
+      }
+    ]
+  },
+  {
+    "url": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/",
+    "path": "/non-surgical-relief-for-sciatica-pain-in-amarillo/",
+    "slug": "non-surgical-relief-for-sciatica-pain-in-amarillo",
+    "sitemap": "post",
+    "lastmod": "2026-09-28T17:00:00+00:00",
+    "type": "post",
+    "meta": {
+      "openGraph": {
+        "locale": "en_US",
+        "type": "article",
+        "title": "Non Surgical Relief for Sciatica Pain in Amarillo",
+        "description": "Learn practical ways to ease flare ups and find sciatica treatment in Amarillo with integrative, non surgical care that supports mobility and comfort",
+        "url": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/",
+        "site_name": "One Light Medical",
+        "image": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png",
+        "image:secure_url": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png",
+        "image:width": "1280",
+        "image:height": "720",
+        "image:alt": "Non Surgical Relief for Sciatica Pain in Amarillo",
+        "image:type": "image/png"
+      },
+      "twitter": {
+        "card": "summary_large_image",
+        "title": "Non Surgical Relief for Sciatica Pain in Amarillo",
+        "description": "Learn practical ways to ease flare ups and find sciatica treatment in Amarillo with integrative, non surgical care that supports mobility and comfort",
+        "image": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png",
+        "label1": "Written by",
+        "data1": "byron@modfxmedia.com",
+        "label2": "Time to read",
+        "data2": "7 minutes"
+      },
+      "other": {
+        "article:section": "Therapy",
+        "article:published_time": "2026-09-28T17:00:00+00:00"
+      },
+      "title": "Non Surgical Relief for Sciatica Pain in Amarillo",
+      "description": "Learn practical ways to ease flare ups and find sciatica treatment in Amarillo with integrative, non surgical care that supports mobility and comfort",
+      "robots": "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+      "canonical": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/"
+    },
+    "jsonLd": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": [
+              "Person",
+              "Organization"
+            ],
+            "@id": "https://onelightmedical.com/#person",
+            "name": "One Light Medical"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://onelightmedical.com/#website",
+            "url": "https://onelightmedical.com",
+            "name": "One Light Medical",
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png",
+            "url": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png",
+            "width": "1280",
+            "height": "720",
+            "caption": "Non Surgical Relief for Sciatica Pain in Amarillo",
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/#webpage",
+            "url": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/",
+            "name": "Non Surgical Relief for Sciatica Pain in Amarillo",
+            "datePublished": "2026-09-28T17:00:00+00:00",
+            "dateModified": "2026-09-28T17:00:00+00:00",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "name": "byron@modfxmedia.com",
+            "url": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "url": "https://secure.gravatar.com/avatar/a3bbefde3feeaee30ea98e932bb936b6f2cb970ff8b7c543bbb35bcbd712a2dc?s=96&amp;d=mm&amp;r=g",
+              "caption": "byron@modfxmedia.com",
+              "inLanguage": "en-US"
+            },
+            "sameAs": [
+              "https://onelightmedical.com"
+            ]
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Find Relief From Sudden Sciatica Flare-Ups",
+            "datePublished": "2026-09-28T17:00:00+00:00",
+            "dateModified": "2026-09-28T17:00:00+00:00",
+            "articleSection": "Therapy",
+            "author": {
+              "@id": "https://onelightmedical.com/author/byronmodfxmedia-com/",
+              "name": "byron@modfxmedia.com"
+            },
+            "publisher": {
+              "@id": "https://onelightmedical.com/#person"
+            },
+            "description": "Learn practical ways to ease flare ups and find sciatica treatment in Amarillo with integrative, non surgical care that supports mobility and comfort",
+            "name": "Non Surgical Relief for Sciatica Pain in Amarillo",
+            "@id": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/#richSnippet",
+            "isPartOf": {
+              "@id": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/#webpage"
+            },
+            "image": {
+              "@id": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png"
+            },
+            "inLanguage": "en-US",
+            "mainEntityOfPage": {
+              "@id": "https://onelightmedical.com/non-surgical-relief-for-sciatica-pain-in-amarillo/#webpage"
+            }
+          }
+        ]
+      }
+    ],
+    "h1": "Find Relief From Sudden Sciatica Flare-Ups",
+    "dates": {
+      "datePublished": "2026-09-28T17:00:00+00:00",
+      "dateModified": "2026-09-28T17:00:00+00:00"
+    },
+    "blocks": [],
+    "images": [
+      {
+        "src": "https://onelightmedical.com/images/non-surgical-relief-for-sciatica-pain-in-amarillo.png",
+        "alt": "Non Surgical Relief for Sciatica Pain in Amarillo",
+        "width": 1280,
+        "height": 720
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/spinal-decompression/",
+        "text": "sciatica treatment in Amarillo"
+      },
+      {
+        "href": "/contact/",
+        "text": "contact us"
+      }
+    ]
+  },
+  {
     "url": "https://onelightmedical.com/shockwave-therapy-in-amarillo-key-questions-to-ask/",
     "path": "/shockwave-therapy-in-amarillo-key-questions-to-ask/",
     "slug": "shockwave-therapy-in-amarillo-key-questions-to-ask",

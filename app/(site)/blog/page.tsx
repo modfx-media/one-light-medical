@@ -5,6 +5,8 @@ import { CMSRoute } from "@/components/cms/cms-route";
 import { legacyMetadata } from "@/components/legacy-page";
 import { cmsMetadata } from "@/lib/cms/metadata";
 
+
+export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   return cmsMetadata("/blog", legacyMetadata("blog"));
 }

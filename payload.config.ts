@@ -15,6 +15,7 @@ import { Footer, Header, SiteSettings } from './globals/Site'
 import { toPublicPath } from './lib/cms/path'
 import { getCorsOrigins, getServerURL } from './lib/cms/url'
 
+import { scheduledPublishPlugin } from "./scheduled-publish";
 const dirname = process.cwd()
 
 const disablePush =
@@ -52,6 +53,7 @@ export default buildConfig({
   editor: lexicalEditor(),
   globals: [Header, Footer, SiteSettings],
   plugins: [
+    scheduledPublishPlugin(),
     seoPlugin({
       collections: ['pages', 'posts'],
       fields: ({ defaultFields }) => defaultFields,

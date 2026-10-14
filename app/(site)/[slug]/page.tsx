@@ -20,17 +20,30 @@ export function generateStaticParams() {
   return postSlugs().map((slug) => ({ slug }));
 }
 
-export const dynamicParams = false;
+// CMS-only posts (created in Payload) are not in the static route map, so
+// unknown slugs are resolved at request time and 404 only without a published doc.
+export const dynamicParams = true;
+export const revalidate = 300;
+
+function MissingPost(): never {
+  notFound();
+}
 
 export async function generateMetadata({ params }: PageProps<"/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  if (!postSlugs().includes(slug)) return {};
+  if (!postSlugs().includes(slug)) return cmsMetadata(`/${slug}`, {});
   return cmsMetadata(`/${slug}`, legacyMetadata(slug));
 }
 
 export default async function BlogPostPage({ params }: PageProps<"/[slug]">) {
   const { slug } = await params;
-  if (!postSlugs().includes(slug)) notFound();
+  if (!postSlugs().includes(slug)) {
+    return (
+      <CMSRoute path={`/${slug}`}>
+        <MissingPost />
+      </CMSRoute>
+    );
+  }
 
   return (
     <CMSRoute path={`/${slug}`}>

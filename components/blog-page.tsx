@@ -3,11 +3,12 @@ import Link from "next/link";
 import { BlogIndex } from "@/components/blog-index";
 import { JsonLd } from "@/components/json-ld";
 import { formatBlogDate, getBlogCards } from "@/lib/blog";
+import { mergeCmsCards } from "@/lib/cms/listed-posts";
 import { getPageSchema } from "@/lib/schema";
 import { BUSINESS } from "@/lib/site";
 
-export function BlogPage() {
-  const posts = getBlogCards();
+export async function BlogPage() {
+  const posts = await mergeCmsCards(getBlogCards());
   const [featured, ...rest] = posts;
 
   return (

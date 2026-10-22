@@ -6,6 +6,23 @@ const nextConfig: NextConfig = {
   // non-slash form, so this preserves the exact indexed URLs after cutover.
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
+  async redirects() {
+    // Red light therapy was folded into the weight-loss service page.
+    // The old address still receives visits, so send them there permanently.
+    // Both forms are listed because skipTrailingSlashRedirect is on.
+    return [
+      {
+        source: "/red-light-therapy",
+        destination: "/weight-loss/",
+        permanent: true,
+      },
+      {
+        source: "/red-light-therapy/",
+        destination: "/weight-loss/",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

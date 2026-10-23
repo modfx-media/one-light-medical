@@ -5,5 +5,6 @@ export type BlogCard = {
   publishedTime?: string;
   publishedLabel: string | null;
   src: string | null;
+  alt: string;
   topic: string;
 };

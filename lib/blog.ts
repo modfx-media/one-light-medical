@@ -1,5 +1,5 @@
+import { blogCoverOrFallback } from "@/lib/blog-covers";
 import type { BlogCard } from "@/lib/blog-card";
-import { toLocalAsset } from "@/lib/markdown";
 import { getPostEntries, type RouteMapEntry } from "@/lib/route-map";
 
 export type { BlogCard };
@@ -12,10 +12,6 @@ export function formatBlogDate(value?: string, style: "short" | "long" = "short"
     day: "numeric",
     timeZone: "UTC",
   });
-}
-
-export function blogCover(post: RouteMapEntry) {
-  return post.ogImage ? toLocalAsset(post.ogImage) : null;
 }
 
 export function blogTopic(post: RouteMapEntry) {
@@ -52,13 +48,15 @@ export function blogTopic(post: RouteMapEntry) {
 }
 
 export function toBlogCard(post: RouteMapEntry): BlogCard {
+  const cover = blogCoverOrFallback(post.path, post.ogImage, post.h1);
   return {
     path: post.path,
     h1: post.h1,
     excerpt: post.metaDescription,
     publishedTime: post.publishedTime,
     publishedLabel: formatBlogDate(post.publishedTime),
-    src: blogCover(post),
+    src: cover.src,
+    alt: cover.alt,
     topic: blogTopic(post),
   };
 }

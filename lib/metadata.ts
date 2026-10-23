@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { resolveBlogCover } from "@/lib/blog-covers";
 import { loadPage } from "@/lib/markdown";
 import { getEntryByPath, slugForPath, type RouteMapEntry } from "@/lib/route-map";
 import { BUSINESS, SITE_URL } from "@/lib/site";
@@ -16,8 +17,11 @@ function fallbackImage(path: string): string | null {
   return image?.src ?? null;
 }
 
-function socialImage(entry: RouteMapEntry): string | null {
-  return entry.ogImage ?? fallbackImage(entry.path);
+function socialImage(entry: RouteMapEntry): { url: string; alt?: string } | null {
+  const resolved = resolveBlogCover(entry.path, entry.ogImage, entry.h1);
+  if (resolved) return { url: resolved.src, alt: resolved.alt };
+  const fromContent = fallbackImage(entry.path);
+  return fromContent ? { url: fromContent } : null;
 }
 
 /**
@@ -57,7 +61,7 @@ export function buildMetadata(path: string): Metadata {
       siteName: BUSINESS.name,
       locale: OG_LOCALE,
       type: ogType,
-      ...(image ? { images: [{ url: image }] } : {}),
+      ...(image ? { images: [{ url: image.url, alt: image.alt }] } : {}),
       ...(ogType === "article" && entry.publishedTime
         ? {
             publishedTime: entry.publishedTime,
@@ -69,7 +73,7 @@ export function buildMetadata(path: string): Metadata {
       card: "summary_large_image",
       title: entry.title,
       description: entry.metaDescription,
-      ...(image ? { images: [image] } : {}),
+      ...(image ? { images: [image.url] } : {}),
     },
   };
 }

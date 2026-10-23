@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import { BlogImage } from "@/components/blog-image";
 import type { BlogCard } from "@/lib/blog-card";
 
 export function BlogIndex({ posts }: { posts: BlogCard[] }) {
@@ -39,9 +40,11 @@ export function BlogIndex({ posts }: { posts: BlogCard[] }) {
             <li key={post.path}>
               <Link href={post.path}>
                 <figure>
-                  {post.src ? (
-                    <img src={post.src} alt="" width={480} height={300} loading="lazy" />
-                  ) : null}
+                  <BlogImage
+                    src={post.src}
+                    alt={post.alt}
+                    sizes="(max-width: 800px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                   <span>{post.topic}</span>
                 </figure>
                 {post.publishedTime ? (

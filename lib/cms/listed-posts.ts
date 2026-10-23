@@ -3,6 +3,7 @@ import config from "@payload-config";
 
 import type { BlogCard } from "@/lib/blog-card";
 import { blogTopic, formatBlogDate } from "@/lib/blog";
+import { resolveBlogImage } from "@/lib/blog-image";
 import type { RouteMapEntry } from "@/lib/route-map";
 
 const strip = (p: string) => p.replace(/^\/+|\/+$/g, "");
@@ -32,22 +33,30 @@ export async function getCmsBlogCards(): Promise<BlogCard[]> {
           title?: string | null;
           h1?: string | null;
           publishedAt?: string | null;
-          meta?: { description?: string | null; image?: { url?: string | null } | number | null } | null;
+          meta?: {
+            description?: string | null;
+            image?: { url?: string | null; alt?: string | null } | number | null;
+          } | null;
         };
         const slug = d.slug || strip(d.path ?? "");
         const h1 = d.h1 || d.title || "";
         if (!slug || !h1) return null;
         const path = `/${strip(d.path || slug)}/`;
-        const image = d.meta?.image && typeof d.meta.image === "object" ? d.meta.image.url ?? null : null;
+        const media = d.meta?.image && typeof d.meta.image === "object" ? d.meta.image : null;
+        const image = resolveBlogImage({
+          path,
+          src: media?.url ?? null,
+          alt: media?.alt ?? null,
+        });
         const card: BlogCard = {
           path,
           h1,
           excerpt: d.meta?.description ?? "",
           publishedTime: d.publishedAt ?? undefined,
           publishedLabel: formatBlogDate(d.publishedAt ?? undefined),
-          src: image,
+          ...image,
           topic: blogTopic({ h1, path } as RouteMapEntry),
-        } as BlogCard;
+        };
         return card;
       })
       .filter((c): c is BlogCard => Boolean(c));

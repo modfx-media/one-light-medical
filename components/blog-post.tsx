@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { BlogPhoto } from "@/components/blog-photo";
 import { JsonLd } from "@/components/json-ld";
 import { MarkdownBody } from "@/components/markdown-body";
-import { blogCover, blogTopic, formatBlogDate, getBlogCards } from "@/lib/blog";
+import { blogImageFor, blogTopic, formatBlogDate, getBlogCards } from "@/lib/blog";
 import { loadPage, toLocalAsset } from "@/lib/markdown";
 import { getEntryByPath, pathForSlug } from "@/lib/route-map";
 import { getPageSchema } from "@/lib/schema";
@@ -16,15 +17,15 @@ export function BlogPost({ slug }: { slug: string }) {
 
   const { frontmatter, nodes } = document;
   const published = formatBlogDate(frontmatter.publishedTime, "long");
-  const cover = blogCover(entry);
+  const image = blogImageFor(entry);
   const topic = blogTopic(entry);
   const related = getBlogCards()
     .filter((post) => post.path !== entry.path)
     .slice(0, 3);
 
   const body = nodes.filter((node, index) => {
-    if (node.kind !== "image" || !cover) return true;
-    return !(index === 0 && toLocalAsset(node.src) === cover);
+    if (node.kind !== "image") return true;
+    return !(index === 0 && toLocalAsset(node.src) === image.src);
   });
 
   return (
@@ -44,11 +45,9 @@ export function BlogPost({ slug }: { slug: string }) {
             </p>
           ) : null}
         </header>
-        {cover ? (
-          <figure className="blog-article-cover">
-            <img src={cover} alt="" width={800} height={420} />
-          </figure>
-        ) : null}
+        <figure className="blog-article-cover">
+          <BlogPhoto image={image} sizes="(max-width: 800px) 100vw, 40rem" />
+        </figure>
         <div className="markdown">
           <MarkdownBody nodes={body} />
         </div>
@@ -64,9 +63,11 @@ export function BlogPost({ slug }: { slug: string }) {
                 <li key={post.path}>
                   <Link href={post.path}>
                     <figure>
-                      {post.src ? (
-                        <img src={post.src} alt="" width={480} height={300} loading="lazy" />
-                      ) : null}
+                      <BlogPhoto
+                        image={post}
+                        fill
+                        sizes="(max-width: 900px) 100vw, 33vw"
+                      />
                       <span>{post.topic}</span>
                     </figure>
                     {post.publishedTime ? (

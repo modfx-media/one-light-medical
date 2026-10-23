@@ -30,6 +30,16 @@ const nextConfig: NextConfig = {
         hostname: '**.public.blob.vercel-storage.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'onelightmedical.com',
+        pathname: '/api/media/file/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'one-light-medical.vercel.app',
+        pathname: '/api/media/file/**',
+      },
     ],
   },
   serverExternalPackages: [

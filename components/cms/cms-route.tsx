@@ -19,7 +19,11 @@ export async function CMSRoute({
   return (
     <>
       {draft.isEnabled ? <LivePreviewListener /> : null}
-      <RenderRoutedContent doc={routed.doc} fallback={children} />
+      <RenderRoutedContent
+        doc={routed.doc}
+        fallback={children}
+        cover={routed.collection === 'posts'}
+      />
     </>
   )
 }

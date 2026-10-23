@@ -2,6 +2,7 @@ import { draftMode } from 'next/headers'
 import { getPayload } from 'payload'
 
 import { queryPathsFor } from '@/lib/cms/path'
+import { findPublicPost, publicPostFallbackEnabled } from '@/lib/cms/public-posts'
 import { withCMS } from '@/lib/cms/safe'
 import config from '@payload-config'
 
@@ -57,7 +58,17 @@ async function findByPath(collection: RoutedCollection, paths: string[], draft: 
 }
 
 export async function queryRoutedContentByPath(path: string): Promise<RoutedContent | null> {
-  if (!cmsReady()) return null
+  if (!cmsReady()) {
+    if (!publicPostFallbackEnabled()) return null
+    const post = await findPublicPost(path)
+    if (!post || post.id == null) return null
+    const doc: RoutedDoc = {
+      ...post,
+      id: post.id,
+      meta: post.meta ?? undefined,
+    }
+    return { collection: 'posts', doc }
+  }
   return withCMS(async () => {
     const draft = (await draftMode()).isEnabled
     const paths = queryPathsFor(path)

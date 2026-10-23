@@ -5448,8 +5448,10 @@ main > article a {
 }
 
 .blog-feature-card figure {
+  position: relative;
   margin: 0;
-  min-height: 100%;
+  min-height: 22rem;
+  background: #d9e3ea;
 }
 
 .blog-feature-card img,
@@ -5460,7 +5462,6 @@ main > article a {
   object-fit: cover;
 }
 
-.blog-article-cover img,
 .blog-article .markdown img {
   display: block;
   width: auto;
@@ -5469,9 +5470,11 @@ main > article a {
   object-fit: contain;
 }
 
-.blog-feature-card img {
-  height: 100%;
-  min-height: 22rem;
+img.blog-fill {
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
 }
 
 .blog-feature-card > div {
@@ -5586,9 +5589,11 @@ main > article a {
   margin: 0;
   height: 15rem;
   overflow: hidden;
+  background: #d9e3ea;
 }
 
 .blog-grid figure span {
+  z-index: 1;
   position: absolute;
   top: 0.7rem;
   left: 0.7rem;
@@ -5731,15 +5736,13 @@ main > article a {
 }
 
 .blog-article-cover {
+  position: relative;
   max-width: 40rem;
   margin: 1.35rem auto 0;
   overflow: hidden;
+  aspect-ratio: 3 / 2;
   border-radius: 1.15rem;
-}
-
-.blog-article-cover img {
-  max-height: 22rem;
-  margin-inline: auto;
+  background: #d9e3ea;
 }
 
 .blog-article .markdown {

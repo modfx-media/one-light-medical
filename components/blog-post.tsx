@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { BlogImage } from "@/components/blog-image";
 import { JsonLd } from "@/components/json-ld";
 import { MarkdownBody } from "@/components/markdown-body";
-import { blogCover, blogTopic, formatBlogDate, getBlogCards } from "@/lib/blog";
+import { blogTopic, formatBlogDate, getBlogCards } from "@/lib/blog";
+import { blogCoverOrFallback } from "@/lib/blog-covers";
 import { loadPage, toLocalAsset } from "@/lib/markdown";
 import { getEntryByPath, pathForSlug } from "@/lib/route-map";
 import { getPageSchema } from "@/lib/schema";
@@ -16,15 +18,15 @@ export function BlogPost({ slug }: { slug: string }) {
 
   const { frontmatter, nodes } = document;
   const published = formatBlogDate(frontmatter.publishedTime, "long");
-  const cover = blogCover(entry);
+  const cover = blogCoverOrFallback(entry.path, entry.ogImage, frontmatter.h1);
   const topic = blogTopic(entry);
   const related = getBlogCards()
     .filter((post) => post.path !== entry.path)
     .slice(0, 3);
 
   const body = nodes.filter((node, index) => {
-    if (node.kind !== "image" || !cover) return true;
-    return !(index === 0 && toLocalAsset(node.src) === cover);
+    if (node.kind !== "image") return true;
+    return !(index === 0 && toLocalAsset(node.src) === cover.src);
   });
 
   return (
@@ -44,11 +46,14 @@ export function BlogPost({ slug }: { slug: string }) {
             </p>
           ) : null}
         </header>
-        {cover ? (
-          <figure className="blog-article-cover">
-            <img src={cover} alt="" width={800} height={420} />
-          </figure>
-        ) : null}
+        <figure className="blog-article-cover">
+          <BlogImage
+            src={cover.src}
+            alt={cover.alt}
+            sizes="(max-width: 800px) 100vw, 40rem"
+            preload
+          />
+        </figure>
         <div className="markdown">
           <MarkdownBody nodes={body} />
         </div>
@@ -64,9 +69,11 @@ export function BlogPost({ slug }: { slug: string }) {
                 <li key={post.path}>
                   <Link href={post.path}>
                     <figure>
-                      {post.src ? (
-                        <img src={post.src} alt="" width={480} height={300} loading="lazy" />
-                      ) : null}
+                      <BlogImage
+                        src={post.src}
+                        alt={post.alt}
+                        sizes="(max-width: 800px) 100vw, 33vw"
+                      />
                       <span>{post.topic}</span>
                     </figure>
                     {post.publishedTime ? (

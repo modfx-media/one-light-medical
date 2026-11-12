@@ -4,9 +4,7 @@ export type BlogCard = {
   excerpt: string;
   publishedTime?: string;
   publishedLabel: string | null;
-  src: string;
+  src: string | null;
   alt: string;
-  width: number;
-  height: number;
   topic: string;
 };

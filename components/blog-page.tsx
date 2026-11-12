@@ -1,7 +1,7 @@
 import Link from "next/link";
 
+import { BlogImage } from "@/components/blog-image";
 import { BlogIndex } from "@/components/blog-index";
-import { BlogPhoto } from "@/components/blog-photo";
 import { JsonLd } from "@/components/json-ld";
 import { formatBlogDate, getBlogCards } from "@/lib/blog";
 import { mergeCmsCards } from "@/lib/cms/listed-posts";
@@ -40,11 +40,11 @@ export async function BlogPage() {
           <div className="wrap">
             <article className="blog-feature-card">
               <figure>
-                <BlogPhoto
-                  image={featured}
-                  fill
-                  preload
+                <BlogImage
+                  src={featured.src}
+                  alt={featured.alt}
                   sizes="(max-width: 900px) 100vw, 45vw"
+                  preload
                 />
               </figure>
               <div>

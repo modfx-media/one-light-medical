@@ -5450,8 +5450,8 @@ main > article a {
 .blog-feature-card figure {
   position: relative;
   margin: 0;
-  height: 100%;
   min-height: 22rem;
+  background: #d9e3ea;
 }
 
 .blog-feature-card img,
@@ -5462,7 +5462,6 @@ main > article a {
   object-fit: cover;
 }
 
-.blog-article-cover img,
 .blog-article .markdown img {
   display: block;
   width: auto;
@@ -5471,16 +5470,11 @@ main > article a {
   object-fit: contain;
 }
 
-.blog-article-cover img,
-.cms-richtext .cms-inline-photo {
-  width: 100%;
+img.blog-fill {
+  margin: 0;
+  max-width: none;
   max-height: none;
   object-fit: cover;
-}
-
-.blog-feature-card img {
-  height: 100%;
-  min-height: 22rem;
 }
 
 .blog-feature-card > div {
@@ -5595,11 +5589,12 @@ main > article a {
   margin: 0;
   height: 15rem;
   overflow: hidden;
+  background: #d9e3ea;
 }
 
 .blog-grid figure span {
-  position: absolute;
   z-index: 1;
+  position: absolute;
   top: 0.7rem;
   left: 0.7rem;
   padding: 0.22rem 0.6rem;
@@ -5741,20 +5736,13 @@ main > article a {
 }
 
 .blog-article-cover {
+  position: relative;
   max-width: 40rem;
   margin: 1.35rem auto 0;
   overflow: hidden;
+  aspect-ratio: 3 / 2;
   border-radius: 1.15rem;
-}
-
-.cms-doc .blog-article-cover,
-.cms-richtext .cms-inline-photo {
-  border-radius: 1.15rem;
-}
-
-.blog-article-cover img {
-  max-height: 22rem;
-  margin-inline: auto;
+  background: #d9e3ea;
 }
 
 .blog-article .markdown {

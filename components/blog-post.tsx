@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { BlogPhoto } from "@/components/blog-photo";
+import { BlogImage } from "@/components/blog-image";
 import { JsonLd } from "@/components/json-ld";
 import { MarkdownBody } from "@/components/markdown-body";
-import { blogImageFor, blogTopic, formatBlogDate, getBlogCards } from "@/lib/blog";
+import { blogTopic, formatBlogDate, getBlogCards } from "@/lib/blog";
+import { blogCoverOrFallback } from "@/lib/blog-covers";
 import { loadPage, toLocalAsset } from "@/lib/markdown";
 import { getEntryByPath, pathForSlug } from "@/lib/route-map";
 import { getPageSchema } from "@/lib/schema";
@@ -17,7 +18,7 @@ export function BlogPost({ slug }: { slug: string }) {
 
   const { frontmatter, nodes } = document;
   const published = formatBlogDate(frontmatter.publishedTime, "long");
-  const image = blogImageFor(entry);
+  const cover = blogCoverOrFallback(entry.path, entry.ogImage, frontmatter.h1);
   const topic = blogTopic(entry);
   const related = getBlogCards()
     .filter((post) => post.path !== entry.path)
@@ -25,7 +26,7 @@ export function BlogPost({ slug }: { slug: string }) {
 
   const body = nodes.filter((node, index) => {
     if (node.kind !== "image") return true;
-    return !(index === 0 && toLocalAsset(node.src) === image.src);
+    return !(index === 0 && toLocalAsset(node.src) === cover.src);
   });
 
   return (
@@ -46,7 +47,12 @@ export function BlogPost({ slug }: { slug: string }) {
           ) : null}
         </header>
         <figure className="blog-article-cover">
-          <BlogPhoto image={image} sizes="(max-width: 800px) 100vw, 40rem" />
+          <BlogImage
+            src={cover.src}
+            alt={cover.alt}
+            sizes="(max-width: 800px) 100vw, 40rem"
+            preload
+          />
         </figure>
         <div className="markdown">
           <MarkdownBody nodes={body} />
@@ -63,10 +69,10 @@ export function BlogPost({ slug }: { slug: string }) {
                 <li key={post.path}>
                   <Link href={post.path}>
                     <figure>
-                      <BlogPhoto
-                        image={post}
-                        fill
-                        sizes="(max-width: 900px) 100vw, 33vw"
+                      <BlogImage
+                        src={post.src}
+                        alt={post.alt}
+                        sizes="(max-width: 800px) 100vw, 33vw"
                       />
                       <span>{post.topic}</span>
                     </figure>

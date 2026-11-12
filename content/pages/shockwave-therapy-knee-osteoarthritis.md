@@ -4,7 +4,7 @@ type: "post"
 title: "Shockwave Therapy for Knee Arthritis in Amarillo"
 metaDescription: "Learn who benefits most, who should avoid it, and expected outcomes with shockwave therapy in Amarillo for knee osteoarthritis relief and mobility improvement"
 canonical: "https://onelightmedical.com/shockwave-therapy-knee-osteoarthritis/"
-ogImage: "https://onelightmedical.com/images/blog/knee-osteoarthritis-shockwave.jpg"
+ogImage: "https://onelightmedical.com/images/blog/shockwave-knee-osteoarthritis.jpg"
 schemaTypes: ["BlogPosting", "ImageObject", "Organization", "Person", "WebPage", "WebSite"]
 h1: "Shockwave Therapy for Knee Osteoarthritis in Amarillo: Who It Helps Most"
 publishedTime: "2026-10-12T12:00:00+00:00"
@@ -13,11 +13,11 @@ ogTitle: "Shockwave Therapy for Knee Arthritis in Amarillo"
 ogDescription: "Learn who benefits most, who should avoid it, and expected outcomes with shockwave therapy in Amarillo for knee osteoarthritis relief and mobility improvement"
 ogType: "article"
 images:
-  - {"src": "https://onelightmedical.com/images/blog/knee-osteoarthritis-shockwave.jpg", "alt": "Clinician applying a handheld therapy device to a patient's knee in a medical clinic", "role": "featured", "decorative": false}
+  - {"src": "https://onelightmedical.com/images/blog/shockwave-knee-osteoarthritis.jpg", "alt": "Clinician applying a therapy device to a patient's knee in a medical clinic", "role": "featured", "decorative": false}
 internalLinks: ["/softwave-trt-treatment/", "/contact/"]
 ---
 
-![Clinician applying a handheld therapy device to a patient's knee in a medical clinic](https://onelightmedical.com/images/blog/knee-osteoarthritis-shockwave.jpg)
+![Clinician applying a therapy device to a patient's knee in a medical clinic](https://onelightmedical.com/images/blog/shockwave-knee-osteoarthritis.jpg)
 
 ## Find Relief From Knee Arthritis Without Surgery
 

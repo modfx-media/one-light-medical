@@ -1,78 +1,75 @@
-import { RichText, type JSXConvertersFunction } from '@payloadcms/richtext-lexical/react'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-import { BlogPhoto } from '@/components/blog-photo'
-import { resolveBlogImage, type BlogImage } from '@/lib/blog-image'
+import { BlogImage } from '@/components/blog-image'
+import { blogCoverOrFallback, replacementForMediaUrl } from '@/lib/blog-covers'
+import { toPublicPath } from '@/lib/cms/path'
 import type { RoutedDoc } from '@/lib/cms/query'
 
-function mediaFields(value: unknown): { url: string | null; alt: string | null } {
-  if (!value || typeof value !== 'object') return { url: null, alt: null }
-  const record = value as { url?: unknown; alt?: unknown }
-  return {
-    url: typeof record.url === 'string' ? record.url : null,
-    alt: typeof record.alt === 'string' ? record.alt : null,
+function mediaUrl(value: unknown): string | null {
+  if (value && typeof value === 'object' && 'url' in value && typeof value.url === 'string') {
+    return value.url
   }
+  return null
 }
 
-function hasUpload(value: unknown): boolean {
-  if (!value || typeof value !== 'object') return false
-  if (Array.isArray(value)) return value.some(hasUpload)
+function shownMediaUrl(raw: string | null): string | null {
+  if (!raw) return null
+  return replacementForMediaUrl(raw)?.src ?? raw
+}
+
+function mediaAlt(value: unknown): string | null {
+  if (value && typeof value === 'object' && 'alt' in value && typeof value.alt === 'string') {
+    return value.alt
+  }
+  return null
+}
+
+/** Point known-bad CMS files at the local replacement before rich text renders. */
+function rewriteUploadUrls(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(rewriteUploadUrls)
+  if (!value || typeof value !== 'object') return value
   const record = value as Record<string, unknown>
-  if (record.type === 'upload') return true
-  return Object.values(record).some(hasUpload)
-}
-
-export function routedDocHasImage(doc: RoutedDoc): boolean {
-  const layout = Array.isArray(doc.layout) ? doc.layout : []
-  for (const block of layout) {
-    if (!block || typeof block !== 'object') continue
-    const item = block as Record<string, unknown>
-    if (item.blockType === 'hero' && mediaFields(item.image).url) return true
-    if (item.blockType === 'mediaBlock' && mediaFields(item.media).url) return true
+  const next: Record<string, unknown> = {}
+  for (const [key, child] of Object.entries(record)) {
+    next[key] = rewriteUploadUrls(child)
   }
-  return hasUpload(doc.body)
+  if (next.type === 'upload' && next.value && typeof next.value === 'object') {
+    const upload = { ...(next.value as Record<string, unknown>) }
+    const url = typeof upload.url === 'string' ? upload.url : null
+    const replacement = replacementForMediaUrl(url)
+    if (replacement) {
+      upload.url = replacement.src
+      upload.alt = replacement.alt
+    }
+    next.value = upload
+  }
+  return next
 }
 
-function uploadConverters(path?: string | null): JSXConvertersFunction {
-  return ({ defaultConverters }) => ({
-    ...defaultConverters,
-    upload: ({ node }) => {
-      const uploadNode = node as {
-        value?: unknown
-        fields?: { alt?: string | null }
-      }
-      if (!uploadNode.value || typeof uploadNode.value !== 'object') return null
-      const upload = uploadNode.value as {
-        url?: string | null
-        alt?: string | null
-        mimeType?: string | null
-        filename?: string | null
-        width?: number | null
-        height?: number | null
-      }
-      const alt = uploadNode.fields?.alt || upload.alt || ''
-      if (!upload.url) return null
-      if (upload.mimeType && !upload.mimeType.startsWith('image')) {
-        return (
-          <a href={upload.url} rel="noopener noreferrer">
-            {upload.filename || 'Download'}
-          </a>
-        )
-      }
-      const image = resolveBlogImage({ path, src: upload.url, alt })
-      return (
-        <BlogPhoto
-          image={image}
-          sizes="(max-width: 800px) 100vw, 48rem"
-          className="cms-inline-photo"
-        />
-      )
-    },
-  })
+function stripLeadingCoverUpload(body: unknown, coverSrc: string): unknown {
+  if (!body || typeof body !== 'object') return body
+  const root = (body as { root?: { children?: unknown[] } }).root
+  if (!root || !Array.isArray(root.children) || root.children.length === 0) return body
+  const [first, ...rest] = root.children
+  if (!first || typeof first !== 'object' || (first as { type?: string }).type !== 'upload') return body
+  const upload = (first as { value?: unknown }).value
+  const url = mediaUrl(upload)
+  const replacement = url ? replacementForMediaUrl(url) : null
+  const shown = replacement?.src ?? url
+  if (shown !== coverSrc && replacement?.src !== coverSrc) return body
+  return { ...(body as object), root: { ...root, children: rest } }
 }
 
-function BlockLayout({ layout, path }: { layout: unknown[]; path?: string | null }) {
+function hasRenderableContent(doc: RoutedDoc): boolean {
+  const layout = Array.isArray(doc.layout) ? doc.layout : []
+  if (layout.length > 0) return true
+  if (doc.body) return true
+  return false
+}
+
+function BlockLayout({ layout }: { layout: unknown[] }) {
   return (
     <>
       {layout.map((block, index) => {
@@ -81,15 +78,14 @@ function BlockLayout({ layout, path }: { layout: unknown[]; path?: string | null
         const key = typeof item.id === 'string' ? item.id : `block-${index}`
 
         if (item.blockType === 'hero') {
-          const media = mediaFields(item.image)
-          const image = media.url ? resolveBlogImage({ path, src: media.url, alt: media.alt }) : null
+          const image = shownMediaUrl(mediaUrl(item.image))
           return (
             <section key={key} className="cms-hero wrap">
               {typeof item.heading === 'string' ? <h1>{item.heading}</h1> : null}
               {typeof item.subheading === 'string' ? <p>{item.subheading}</p> : null}
-              {image ? (
-                <BlogPhoto image={image} sizes="(max-width: 800px) 100vw, 48rem" />
-              ) : null}
+              {/* CMS media URLs are absolute (Blob/local); next/image needs per-host allowlisting. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              {image ? <img src={image} alt="" /> : null}
             </section>
           )
         }
@@ -97,22 +93,18 @@ function BlockLayout({ layout, path }: { layout: unknown[]; path?: string | null
         if (item.blockType === 'content' && item.body) {
           return (
             <div key={key} className="cms-richtext wrap">
-              <RichText converters={uploadConverters(path)} data={item.body as never} />
+              <RichText data={item.body as never} />
             </div>
           )
         }
 
         if (item.blockType === 'mediaBlock') {
-          const media = mediaFields(item.media)
-          if (!media.url) return null
-          const image = resolveBlogImage({
-            path,
-            src: media.url,
-            alt: media.alt || (typeof item.caption === 'string' ? item.caption : null),
-          })
+          const image = shownMediaUrl(mediaUrl(item.media))
+          if (!image) return null
           return (
             <figure key={key} className="wrap">
-              <BlogPhoto image={image} sizes="(max-width: 800px) 100vw, 48rem" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={image} alt={typeof item.caption === 'string' ? item.caption : ''} />
               {typeof item.caption === 'string' ? <figcaption>{item.caption}</figcaption> : null}
             </figure>
           )
@@ -140,31 +132,41 @@ function BlockLayout({ layout, path }: { layout: unknown[]; path?: string | null
 export function RenderRoutedContent({
   doc,
   fallback,
-  cover,
+  cover = false,
 }: {
   doc: RoutedDoc
   fallback: ReactNode
-  cover?: BlogImage | null
+  /** Blog posts always paint a featured image, matching the listing card. */
+  cover?: boolean
 }) {
-  const layout = Array.isArray(doc.layout) ? doc.layout : []
-  const hasBody = Boolean(doc.body)
-  if (layout.length === 0 && !hasBody) return fallback
+  if (!hasRenderableContent(doc)) return fallback
 
   const heading = doc.h1 || doc.title
-  const showCover = Boolean(cover) && !routedDocHasImage(doc)
+  const layout = Array.isArray(doc.layout) ? doc.layout : []
+  const path = toPublicPath(doc.path || '/')
+  const metaImage = doc.meta?.image
+  const featured = cover
+    ? blogCoverOrFallback(path, mediaUrl(metaImage), mediaAlt(metaImage) || heading)
+    : null
+  const body = featured ? stripLeadingCoverUpload(rewriteUploadUrls(doc.body), featured.src) : doc.body
 
   return (
     <article className="cms-doc wrap">
       {heading ? <h1>{heading}</h1> : null}
-      {showCover && cover ? (
+      {featured ? (
         <figure className="blog-article-cover">
-          <BlogPhoto image={cover} sizes="(max-width: 800px) 100vw, 48rem" />
+          <BlogImage
+            src={featured.src}
+            alt={featured.alt}
+            sizes="(max-width: 800px) 100vw, 40rem"
+            preload
+          />
         </figure>
       ) : null}
-      {layout.length > 0 ? <BlockLayout layout={layout} path={doc.path} /> : null}
-      {layout.length === 0 && doc.body ? (
+      {layout.length > 0 ? <BlockLayout layout={layout} /> : null}
+      {layout.length === 0 && body ? (
         <div className="cms-richtext">
-          <RichText converters={uploadConverters(doc.path)} data={doc.body as never} />
+          <RichText data={body as never} />
         </div>
       ) : null}
     </article>

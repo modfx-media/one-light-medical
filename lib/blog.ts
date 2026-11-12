@@ -1,7 +1,6 @@
+import { blogCoverOrFallback } from "@/lib/blog-covers";
 import type { BlogCard } from "@/lib/blog-card";
-import { resolveBlogImage, type BlogImage } from "@/lib/blog-image";
-import { loadPage, toLocalAsset } from "@/lib/markdown";
-import { getPostEntries, slugForPath, type RouteMapEntry } from "@/lib/route-map";
+import { getPostEntries, type RouteMapEntry } from "@/lib/route-map";
 
 export type { BlogCard };
 
@@ -13,14 +12,6 @@ export function formatBlogDate(value?: string, style: "short" | "long" = "short"
     day: "numeric",
     timeZone: "UTC",
   });
-}
-
-export function blogImageFor(post: RouteMapEntry): BlogImage {
-  const src = post.ogImage ? toLocalAsset(post.ogImage) : null;
-  const listed = loadPage(slugForPath(post.path))?.frontmatter.images?.find(
-    (image) => !image.decorative && image.alt && (!src || toLocalAsset(image.src) === src),
-  );
-  return resolveBlogImage({ path: post.path, src, alt: listed?.alt });
 }
 
 export function blogTopic(post: RouteMapEntry) {
@@ -57,13 +48,15 @@ export function blogTopic(post: RouteMapEntry) {
 }
 
 export function toBlogCard(post: RouteMapEntry): BlogCard {
+  const cover = blogCoverOrFallback(post.path, post.ogImage, post.h1);
   return {
     path: post.path,
     h1: post.h1,
     excerpt: post.metaDescription,
     publishedTime: post.publishedTime,
     publishedLabel: formatBlogDate(post.publishedTime),
-    ...blogImageFor(post),
+    src: cover.src,
+    alt: cover.alt,
     topic: blogTopic(post),
   };
 }

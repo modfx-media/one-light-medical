@@ -14,6 +14,11 @@ function mediaUrl(value: unknown): string | null {
   return null
 }
 
+function shownMediaUrl(raw: string | null): string | null {
+  if (!raw) return null
+  return replacementForMediaUrl(raw)?.src ?? raw
+}
+
 function mediaAlt(value: unknown): string | null {
   if (value && typeof value === 'object' && 'alt' in value && typeof value.alt === 'string') {
     return value.alt
@@ -73,7 +78,7 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
         const key = typeof item.id === 'string' ? item.id : `block-${index}`
 
         if (item.blockType === 'hero') {
-          const image = mediaUrl(item.image)
+          const image = shownMediaUrl(mediaUrl(item.image))
           return (
             <section key={key} className="cms-hero wrap">
               {typeof item.heading === 'string' ? <h1>{item.heading}</h1> : null}
@@ -94,7 +99,7 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
         }
 
         if (item.blockType === 'mediaBlock') {
-          const image = mediaUrl(item.media)
+          const image = shownMediaUrl(mediaUrl(item.media))
           if (!image) return null
           return (
             <figure key={key} className="wrap">

@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
  *
  * Most posts store an og:image in content/route-map.json (harvested files under
  * public/). Posts created in Payload store a media URL on meta.image instead.
- * Two of those need a code-level image because we cannot edit the production
+ * These posts need a code-level image because we cannot edit the production
  * database:
  *
  * - /shockwave-therapy-knee-osteoarthritis/ points at
@@ -14,12 +14,16 @@ import { SITE_URL } from "@/lib/site";
  *   subject is not knee pain or shockwave therapy.
  * - /common-neuropathy-causes-and-symptoms-to-recognize-early/ reused the same
  *   file as /understanding-neuropathy-causes-and-symptoms-explained/.
+ * - /beyond-opioids-in-amarillo/ points at
+ *   road-trip-with-raj-_cbKur5I60A-unsplash.jpg. That upload is a Payload
+ *   `/api/media/file/` URL that 404s, so the card would otherwise be blank.
  *
  * Replacement photos are Pexels (free to use, including commercially):
  * - Knee / shockwave cover: Juan Manuel Montejano Lopez,
  *   https://www.pexels.com/photo/leg-of-patient-during-medical-examination-13185367/
  * - Neuropathy cover: Juan Manuel Montejano Lopez,
  *   https://www.pexels.com/photo/leg-of-patient-on-bed-13185359/
+ * - Chronic-pain consult: https://www.pexels.com/photo/7579831/
  * - Empty-image fallback: Yan Krukau,
  *   https://www.pexels.com/photo/woman-in-white-dress-up-shirt-touching-the-back-of-knees-of-woman-in-white-t-shirt-5793651/
  */
@@ -44,14 +48,22 @@ const NEUROPATHY_COVER: ResolvedCover = {
   alt: "Clinician examining a patient's foot for neuropathy symptoms",
 };
 
+const CONSULT_COVER: ResolvedCover = {
+  src: "/images/blog/chronic-pain-clinic-consult.jpg",
+  alt: "Clinician in a white coat consulting with a patient in a medical office",
+};
+
 const COVER_BY_PATH: Record<string, ResolvedCover> = {
   "/shockwave-therapy-knee-osteoarthritis/": KNEE_COVER,
   "/common-neuropathy-causes-and-symptoms-to-recognize-early/": NEUROPATHY_COVER,
+  "/beyond-opioids-in-amarillo/": CONSULT_COVER,
 };
 
-/** CMS filename whose pixels are not the knee article it was attached to. */
+/** CMS filenames that are missing or show the wrong subject. */
 const REPLACEMENT_BY_FILENAME: Record<string, ResolvedCover> = {
   "getty-images-SpaC7NkDIxk-unsplash.jpg": KNEE_COVER,
+  "knee-osteoarthritis-shockwave.jpg": KNEE_COVER,
+  "road-trip-with-raj-_cbKur5I60A-unsplash.jpg": CONSULT_COVER,
 };
 
 export function normalizeBlogPath(path: string): string {
@@ -84,6 +96,15 @@ function replacementForSrc(raw: string): ResolvedCover | null {
 }
 
 /**
+ * Payload's local `/api/media/file/` URLs 404 in production unless blob storage
+ * is configured. They are not files in this repo, so callers swap them for a
+ * local cover instead of emitting a broken path.
+ */
+function isUnhostedPayloadMedia(raw: string): boolean {
+  return /\/api\/media\/file\/[^/?#]+/i.test(raw);
+}
+
+/**
  * The featured image for a post. Path overrides win so a CMS record with an
  * empty or wrong meta image still renders the right cover. Returns null when
  * the post has no image and no override; callers that paint a card use
@@ -99,6 +120,9 @@ export function resolveBlogCover(
   if (rawSrc) {
     const replaced = replacementForSrc(rawSrc);
     if (replaced) return replaced;
+    if (isUnhostedPayloadMedia(rawSrc)) {
+      return { ...CLINIC_FALLBACK, alt: rawAlt?.trim() || CLINIC_FALLBACK.alt };
+    }
     const alt = rawAlt?.trim() || "Article image";
     return { src: normalizeBlogImageSrc(rawSrc), alt };
   }
@@ -113,8 +137,11 @@ export function blogCoverOrFallback(
   return resolveBlogCover(path, rawSrc, rawAlt) ?? CLINIC_FALLBACK;
 }
 
-/** Swap a known-bad media URL for its local replacement. Other URLs are unchanged. */
+/** Swap a known-bad or unhosted media URL for a local file. Other URLs are unchanged. */
 export function replacementForMediaUrl(raw: string | null | undefined): ResolvedCover | null {
   if (!raw) return null;
-  return replacementForSrc(raw);
+  const known = replacementForSrc(raw);
+  if (known) return known;
+  if (isUnhostedPayloadMedia(raw)) return CLINIC_FALLBACK;
+  return null;
 }

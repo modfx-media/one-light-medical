@@ -1,9 +1,14 @@
-import { RichText } from '@payloadcms/richtext-lexical/react'
+import { RichText, type JSXConvertersFunction } from '@payloadcms/richtext-lexical/react'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import { BlogImage } from '@/components/blog-image'
-import { blogCoverOrFallback, replacementForMediaUrl } from '@/lib/blog-covers'
+import { CmsInlineImage } from '@/components/cms/inline-image'
+import {
+  blogCoverOrFallback,
+  displayBlogImageSrc,
+  replacementForMediaUrl,
+} from '@/lib/blog-covers'
 import { toPublicPath } from '@/lib/cms/path'
 import type { RoutedDoc } from '@/lib/cms/query'
 
@@ -15,9 +20,48 @@ function mediaUrl(value: unknown): string | null {
 }
 
 function shownMediaUrl(raw: string | null): string | null {
-  if (!raw) return null
-  return replacementForMediaUrl(raw)?.src ?? raw
+  return displayBlogImageSrc(raw)
 }
+
+type UploadFields = {
+  alt?: unknown
+  url?: unknown
+  mimeType?: unknown
+  width?: unknown
+  height?: unknown
+  sizes?: unknown
+}
+
+function uploadDoc(node: { value?: unknown; fields?: { alt?: unknown } }): UploadFields | null {
+  if (!node.value || typeof node.value !== 'object') return null
+  return node.value as UploadFields
+}
+
+const cmsUploadConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
+  ...defaultConverters,
+  upload: (args) => {
+    const node = args.node as { value?: unknown; fields?: { alt?: unknown } }
+    const doc = uploadDoc(node)
+    const sizes = doc?.sizes
+    const hasSizes = Boolean(sizes && typeof sizes === 'object' && Object.keys(sizes).length > 0)
+    const mimeType = typeof doc?.mimeType === 'string' ? doc.mimeType : ''
+    if (!doc || !mimeType.startsWith('image') || hasSizes) {
+      const fallback = defaultConverters.upload
+      return typeof fallback === 'function' ? fallback(args) : fallback
+    }
+    const rawUrl = typeof doc.url === 'string' ? doc.url : null
+    const fieldAlt = typeof node.fields?.alt === 'string' ? node.fields.alt : ''
+    const docAlt = typeof doc.alt === 'string' ? doc.alt : ''
+    return (
+      <CmsInlineImage
+        src={displayBlogImageSrc(rawUrl)}
+        alt={fieldAlt || docAlt}
+        width={typeof doc.width === 'number' ? doc.width : null}
+        height={typeof doc.height === 'number' ? doc.height : null}
+      />
+    )
+  },
+})
 
 function mediaAlt(value: unknown): string | null {
   if (value && typeof value === 'object' && 'alt' in value && typeof value.alt === 'string') {
@@ -38,11 +82,10 @@ function rewriteUploadUrls(value: unknown): unknown {
   if (next.type === 'upload' && next.value && typeof next.value === 'object') {
     const upload = { ...(next.value as Record<string, unknown>) }
     const url = typeof upload.url === 'string' ? upload.url : null
-    const replacement = replacementForMediaUrl(url)
-    if (replacement) {
-      upload.url = replacement.src
-      upload.alt = replacement.alt
-    }
+    const shown = displayBlogImageSrc(url)
+    if (shown) upload.url = shown
+    const replacement = url ? replacementForMediaUrl(url) : null
+    if (replacement) upload.alt = replacement.alt
     next.value = upload
   }
   return next
@@ -56,9 +99,8 @@ function stripLeadingCoverUpload(body: unknown, coverSrc: string): unknown {
   if (!first || typeof first !== 'object' || (first as { type?: string }).type !== 'upload') return body
   const upload = (first as { value?: unknown }).value
   const url = mediaUrl(upload)
-  const replacement = url ? replacementForMediaUrl(url) : null
-  const shown = replacement?.src ?? url
-  if (shown !== coverSrc && replacement?.src !== coverSrc) return body
+  const shown = displayBlogImageSrc(url)
+  if (shown !== coverSrc) return body
   return { ...(body as object), root: { ...root, children: rest } }
 }
 
@@ -83,9 +125,7 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
             <section key={key} className="cms-hero wrap">
               {typeof item.heading === 'string' ? <h1>{item.heading}</h1> : null}
               {typeof item.subheading === 'string' ? <p>{item.subheading}</p> : null}
-              {/* CMS media URLs are absolute (Blob/local); next/image needs per-host allowlisting. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              {image ? <img src={image} alt="" /> : null}
+              {image ? <CmsInlineImage src={image} alt="" /> : null}
             </section>
           )
         }
@@ -93,7 +133,7 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
         if (item.blockType === 'content' && item.body) {
           return (
             <div key={key} className="cms-richtext wrap">
-              <RichText data={item.body as never} />
+              <RichText converters={cmsUploadConverters} data={rewriteUploadUrls(item.body) as never} />
             </div>
           )
         }
@@ -103,8 +143,7 @@ function BlockLayout({ layout }: { layout: unknown[] }) {
           if (!image) return null
           return (
             <figure key={key} className="wrap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={image} alt={typeof item.caption === 'string' ? item.caption : ''} />
+              <CmsInlineImage src={image} alt={typeof item.caption === 'string' ? item.caption : ''} />
               {typeof item.caption === 'string' ? <figcaption>{item.caption}</figcaption> : null}
             </figure>
           )
@@ -166,7 +205,7 @@ export function RenderRoutedContent({
       {layout.length > 0 ? <BlockLayout layout={layout} /> : null}
       {layout.length === 0 && body ? (
         <div className="cms-richtext">
-          <RichText data={body as never} />
+          <RichText converters={cmsUploadConverters} data={body as never} />
         </div>
       ) : null}
     </article>

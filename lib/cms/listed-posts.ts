@@ -11,7 +11,9 @@ const strip = (p: string) => p.replace(/^\/+|\/+$/g, "");
 
 type CmsPostFields = PublicPostDoc;
 
-function cardFromPost(doc: CmsPostFields): BlogCard | null {
+type CmsCard = BlogCard & { editorImage: boolean };
+
+function cardFromPost(doc: CmsPostFields): CmsCard | null {
   const slug = doc.slug || strip(doc.path ?? "");
   const h1 = doc.h1 || doc.title || "";
   if (!slug || !h1) return null;
@@ -29,21 +31,35 @@ function cardFromPost(doc: CmsPostFields): BlogCard | null {
     src: cover.src,
     alt: cover.alt,
     topic: blogTopic({ h1, path } as RouteMapEntry),
+    editorImage: Boolean(rawSrc),
+  };
+}
+
+function toPublicCard(card: CmsCard): BlogCard {
+  return {
+    path: card.path,
+    h1: card.h1,
+    excerpt: card.excerpt,
+    publishedTime: card.publishedTime,
+    publishedLabel: card.publishedLabel,
+    src: card.src,
+    alt: card.alt,
+    topic: card.topic,
   };
 }
 
 /**
  * Published posts from Payload (future-dated ones stay hidden by the
- * scheduled-publish guard). Card image = the post's SEO meta image, after
- * cover overrides and the clinic fallback.
+ * scheduled-publish guard). Card image = the editor's SEO image. Known-bad
+ * filenames still use their local cover. An empty image uses the clinic photo.
  *
  * With no database configured, the public read API is used instead so the
  * listing can be rendered without connecting to production.
  */
-export async function getCmsBlogCards(): Promise<BlogCard[]> {
+async function loadCmsCards(): Promise<CmsCard[]> {
   try {
     if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL && publicPostFallbackEnabled()) {
-      return (await loadPublicPosts()).map(cardFromPost).filter((card): card is BlogCard => Boolean(card));
+      return (await loadPublicPosts()).map(cardFromPost).filter((card): card is CmsCard => Boolean(card));
     }
     const payload = await getPayload({ config });
     const res = await payload.find({
@@ -57,18 +73,32 @@ export async function getCmsBlogCards(): Promise<BlogCard[]> {
     });
     return res.docs
       .map((doc) => cardFromPost(doc as unknown as CmsPostFields))
-      .filter((card): card is BlogCard => Boolean(card));
+      .filter((card): card is CmsCard => Boolean(card));
   } catch {
     return [];
   }
 }
 
-/** Static cards plus CMS-only posts, newest first. */
+export async function getCmsBlogCards(): Promise<BlogCard[]> {
+  return (await loadCmsCards()).map(toPublicCard);
+}
+
+/** Static cards plus CMS-only posts, newest first. An editor image wins. */
 export async function mergeCmsCards(staticCards: BlogCard[]): Promise<BlogCard[]> {
-  const known = new Set(staticCards.map((c) => strip(c.path)));
-  const extra = (await getCmsBlogCards()).filter((c) => !known.has(strip(c.path)));
-  if (extra.length === 0) return staticCards;
-  return [...extra, ...staticCards].sort((a, b) =>
+  const cmsCards = await loadCmsCards();
+  const cmsByPath = new Map(cmsCards.map((card) => [strip(card.path), card]));
+  const withEditorImages = staticCards.map((card) => {
+    const fromCms = cmsByPath.get(strip(card.path));
+    if (!fromCms?.editorImage) return card;
+    return { ...card, src: fromCms.src, alt: fromCms.alt };
+  });
+  const known = new Set(staticCards.map((card) => strip(card.path)));
+  const extra = cmsCards.filter((card) => !known.has(strip(card.path))).map(toPublicCard);
+  const imagesChanged = withEditorImages.some(
+    (card, index) => card.src !== staticCards[index]?.src || card.alt !== staticCards[index]?.alt,
+  );
+  if (extra.length === 0 && !imagesChanged) return staticCards;
+  return [...extra, ...withEditorImages].sort((a, b) =>
     String(b.publishedTime ?? "").localeCompare(String(a.publishedTime ?? "")),
   );
 }

@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 
 import { LivePreviewListener } from '@/components/cms/live-preview-listener'
 import { RenderRoutedContent } from '@/components/cms/render-routed-content'
+import { childrenAreDesigned, selectRoutedBody } from '@/lib/cms/designed-page'
 import { queryRoutedContentByPath } from '@/lib/cms/query'
 
 export async function CMSRoute({
@@ -14,7 +15,22 @@ export async function CMSRoute({
 }) {
   const [routed, draft] = await Promise.all([queryRoutedContentByPath(path), draftMode()])
 
-  if (!routed) return children
+  // Designed pages always render `children`. A published doc contributes
+  // title, description, and canonical through generateMetadata. Posts with
+  // a body still use the generic article renderer.
+  const body = selectRoutedBody({
+    hasDesignedPage: childrenAreDesigned(children),
+    routed,
+  })
+
+  if (body !== 'generic' || !routed) {
+    return (
+      <>
+        {draft.isEnabled && routed ? <LivePreviewListener /> : null}
+        {children}
+      </>
+    )
+  }
 
   return (
     <>
